@@ -13,5 +13,9 @@ if (!$conn) {
 mysqli_set_charset($conn, "utf8mb4");
 
 // Ky rresht është opsional, thjesht për ta testuar tani në fillim
-echo "Lidhja u krye!"; 
+$pyetja = "SELECT * FROM filmat"; 
+$rezultati = mysqli_query($conn, $pyetja);
+$filmi = mysqli_fetch_assoc($rezultati);
+
+echo "Filmi i parë në databazë është: " . $filmi['titulli'];
 ?>
