@@ -17,5 +17,5 @@ $pyetja = "SELECT * FROM filma";
 $rezultati = mysqli_query($conn, $pyetja);
 $filmi = mysqli_fetch_assoc($rezultati);
 
-echo "Filmi i parë në databazë është: " . $filmi['titulli'];
+echo "Filmi i pare ne databaze eshte: " . $filmi['titulli'];
 ?>
