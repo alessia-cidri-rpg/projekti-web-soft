@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db   = "prove_kinema"; // Kujdes: Vendos emrin e saktë që ke në phpMyAdmin
+$db   = "kinema"; //emrin e phpMyAdmin
 
 $conn = mysqli_connect($host, $user, $pass, $db);
 
