@@ -2,7 +2,8 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db   = "kinema"; //emrin e phpMyAdmin
+$db   = "kinema"; //
+// emrin e phpMyAdmin
 
 $conn = mysqli_connect($host, $user, $pass, $db);
 
