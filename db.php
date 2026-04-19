@@ -2,7 +2,8 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db   = "kinema"; //emrin e phpMyAdmin
+$db   = "kinema"; //
+// emrin e phpMyAdmin
 
 $conn = mysqli_connect($host, $user, $pass, $db);
 
@@ -13,7 +14,7 @@ if (!$conn) {
 mysqli_set_charset($conn, "utf8mb4");
 
 // Ky rresht është opsional, thjesht për ta testuar tani në fillim
-$pyetja = "SELECT * FROM filma"; 
+$pyetja = "SELECT * FROM filmi"; 
 $rezultati = mysqli_query($conn, $pyetja);
 $filmi = mysqli_fetch_assoc($rezultati);
 
