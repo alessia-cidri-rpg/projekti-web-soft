@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Movie</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #111;
+  color: white;
+}
+
+header {
+  padding: 15px;
+  background: black;
+}
+
+.container {
+  padding: 20px;
+}
+
+.page { display:none; }
+.active { display:block; }
+
+.seats {
+  display: grid;
+  grid-template-columns: repeat(5, 50px);
+  gap: 10px;
+}
+
+.seat {
+  background: #444;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.seat.selected { background: green; }
+.seat.taken { background: red; pointer-events:none; }
+
+button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Velora 🎬</h1>
+</header>
+
+<div class="container">
+
+<div id="movie" class="page active">
+  <h2 id="movieTitle"></h2>
+  <p>Duration: 2h 30min</p>
+  <p>Genre: Action</p>
+
+  <button onclick="goSeats()">Book Now</button>
+  <br><br>
+  <button onclick="goHome()">Back</button>
+</div>
+
+<div id="seatsPage" class="page">
+  <h2>Select Seats</h2>
+  <div class="seats" id="seats"></div>
+
+  <button onclick="goBooking()">Continue</button>
+  <button onclick="goHome()">Cancel</button>
+</div>
+
+<div id="booking" class="page">
+  <h2>Confirm Booking</h2>
+  <p id="info"></p>
+
+  <button onclick="pay()">Pay Now</button>
+  <button onclick="goHome()">Home</button>
+</div>
+
+</div>
+
+<script>
+
+let selected=[];
+
+/* Merr filmin */
+const params=new URLSearchParams(window.location.search);
+const movie=params.get("movie");
+document.getElementById("movieTitle").innerText=movie;
+
+/* NAV */
+function show(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function goHome(){
+  window.location.href="homeprov3.html";
+}
+
+/* Vendet */
+function goSeats(){
+  show("seatsPage");
+  const c=document.getElementById("seats");
+  c.innerHTML="";
+  selected=[];
+
+  for(let i=1;i<=15;i++){
+    let s=document.createElement("div");
+    s.className="seat";
+    s.innerText="S"+i;
+
+    if(Math.random()<0.2) s.classList.add("taken");
+
+    s.onclick=()=>{
+      if(s.classList.contains("taken")) return;
+
+      s.classList.toggle("selected");
+
+      if(selected.includes(s.innerText)){
+        selected=selected.filter(x=>x!==s.innerText);
+      } else selected.push(s.innerText);
+    };
+
+    c.appendChild(s);
+  }
+}
+
+/* Booking */
+function goBooking(){
+  document.getElementById("info").innerText=
+    movie+" | Seats: "+selected.join(", ");
+  show("booking");
+}
+
+/* Pagesa */
+function pay(){
+  alert("Redirecting...");
+  setTimeout(()=>{
+    alert("Payment Successful ✅");
+    goHome();
+  },1500);
+}
+
+</script>
+
+</body>
+</html>

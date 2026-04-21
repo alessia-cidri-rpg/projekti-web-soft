@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cineplex</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #111;
+  color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background: black;
+}
+
+h1 { color: red; }
+
+.container {
+  padding: 20px;
+}
+
+/* MOVIES */
+.movies {
+  display: flex;
+  gap: 20px;
+}
+
+.movie-card {
+  background: #222;
+  padding: 10px;
+  border-radius: 10px;
+  width: 200px;
+  text-align: center;
+}
+
+.movie-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+/* HIDE PAGES */
+.page {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+/* SEATS */
+.seats {
+  display: grid;
+  grid-template-columns: repeat(5, 50px);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.seat {
+  background: #444;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.seat.selected {
+  background: green;
+}
+
+.seat.taken {
+  background: red;
+  pointer-events: none;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Cineplex 🎬</h1>
+</header>
+
+<div class="container">
+
+  <!-- HOME -->
+  <div id="home" class="page active">
+    <h2>Now Showing</h2>
+
+    <div class="movies">
+      <div class="movie-card">
+        <img src="https://via.placeholder.com/200x300">
+        <h3>Avatar 2</h3>
+        <button onclick="showMovie('Avatar 2')">View</button>
+      </div>
+
+      <div class="movie-card">
+        <img src="https://via.placeholder.com/200x300">
+        <h3>Oppenheimer</h3>
+        <button onclick="showMovie('Oppenheimer')">View</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOVIE DETAILS -->
+  <div id="movie" class="page">
+    <h2 id="movieTitle"></h2>
+    <p>Duration: 2h 30min</p>
+    <p>Genre: Action</p>
+
+    <button onclick="goToSeats()">Book Now</button>
+    <br><br>
+    <button onclick="goHome()">Back</button>
+  </div>
+
+  <!-- SEATS -->
+  <div id="seatsPage" class="page">
+    <h2>Select Seats</h2>
+
+    <div class="seats" id="seatsContainer"></div>
+
+    <button onclick="goToBooking()">Continue</button>
+    <br><br>
+    <button onclick="goHome()">Cancel</button>
+  </div>
+
+  <!-- BOOKING -->
+  <div id="booking" class="page">
+    <h2>Confirm Booking</h2>
+
+    <p id="selectedSeatsText"></p>
+
+    <button onclick="pay()">Pay Now</button>
+    <br><br>
+    <button onclick="goHome()">Home</button>
+  </div>
+
+</div>
+
+<script>
+let selectedSeats = [];
+let currentMovie = "";
+
+/* PAGE SWITCH */
+function showPage(pageId) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById(pageId).classList.add("active");
+}
+
+/* NAVIGATION */
+function goHome() {
+  selectedSeats = [];
+  showPage("home");
+}
+
+function showMovie(movie) {
+  currentMovie = movie;
+  document.getElementById("movieTitle").innerText = movie;
+  showPage("movie");
+}
+
+function goToSeats() {
+  generateSeats();
+  showPage("seatsPage");
+}
+
+function goToBooking() {
+  document.getElementById("selectedSeatsText").innerText =
+    "Seats: " + selectedSeats.join(", ");
+  showPage("booking");
+}
+
+/* SEATS LOGIC */
+function generateSeats() {
+  const container = document.getElementById("seatsContainer");
+  container.innerHTML = "";
+  selectedSeats = [];
+
+  for (let i = 1; i <= 15; i++) {
+    let seat = document.createElement("div");
+    seat.classList.add("seat");
+    seat.innerText = "S" + i;
+
+    // random taken seats
+    if (Math.random() < 0.2) {
+      seat.classList.add("taken");
+    }
+
+    seat.onclick = function () {
+      if (!seat.classList.contains("taken")) {
+        seat.classList.toggle("selected");
+
+        if (selectedSeats.includes(seat.innerText)) {
+          selectedSeats = selectedSeats.filter(s => s !== seat.innerText);
+        } else {
+          selectedSeats.push(seat.innerText);
+        }
+      }
+    };
+
+    container.appendChild(seat);
+  }
+}
+
+/* PAYMENT SIMULATION */
+function pay() {
+  alert("Redirecting to bank...");
+  setTimeout(() => {
+    alert("Payment Successful ✅");
+    goHome();
+  }, 1500);
+}
+
+</script>
+
+</body>
+</html>
