@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2026 at 01:47 PM
+-- Generation Time: May 07, 2026 at 01:56 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -36,25 +36,24 @@ CREATE TABLE `aktore` (
 -- Dumping data for table `aktore`
 --
 
-INSERT INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES
-(1, 'Zendaya'),
-(2, 'Timothée Chalamet'),
-(3, 'Sam Worthington'),
-(4, 'Zoe Saldana'),
-(5, 'Chris Pratt'),
-(6, 'Anya Taylor-Joy'),
-(7, 'Cillian Murphy'),
-(8, 'Emily Blunt'),
-(9, 'Meryl Streep'),
-(10, 'Anne Hathaway'),
-(11, 'Samuel L. Jackson'),
-(12, 'Dwayne Johnson'),
-(13, 'Kevin Hart'),
-(14, 'Jennifer Lawrence'),
-(15, 'Margot Robbie'),
-(16, 'Ryan Gosling'),
-(17, 'Paul Mescal'),
-(18, 'Pedro Pascal');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(1, 'Zendaya');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(2, 'Timothée Chalamet');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(3, 'Sam Worthington');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(4, 'Zoe Saldana');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(5, 'Chris Pratt');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(6, 'Anya Taylor-Joy');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(7, 'Cillian Murphy');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(8, 'Emily Blunt');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(9, 'Meryl Streep');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(10, 'Anne Hathaway');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(11, 'Samuel L. Jackson');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(12, 'Dwayne Johnson');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(13, 'Kevin Hart');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(14, 'Jennifer Lawrence');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(15, 'Margot Robbie');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(16, 'Ryan Gosling');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(17, 'Paul Mescal');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(18, 'Pedro Pascal');
 
 -- --------------------------------------------------------
 
@@ -71,26 +70,25 @@ CREATE TABLE `aktori_filmi` (
 -- Dumping data for table `aktori_filmi`
 --
 
-INSERT INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES
-(1, 2),
-(1, 1),
-(5, 9),
-(5, 10),
-(6, 5),
-(6, 11),
-(7, 12),
-(7, 13),
-(9, 15),
-(9, 16),
-(10, 17),
-(10, 18),
-(2, 3),
-(2, 4),
-(3, 5),
-(3, 6),
-(4, 7),
-(4, 8),
-(8, 14);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(1, 2);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(1, 1);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(5, 9);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(5, 10);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(6, 5);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(6, 11);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(7, 12);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(7, 13);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(9, 15);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(9, 16);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(10, 17);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(10, 18);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(2, 3);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(2, 4);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(3, 5);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(3, 6);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(4, 7);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(4, 8);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(8, 14);
 
 -- --------------------------------------------------------
 
@@ -116,17 +114,16 @@ CREATE TABLE `filmi` (
 -- Dumping data for table `filmi`
 --
 
-INSERT INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES
-(1, 1, 'Dune: Part Two', '02:46:00.000000', '2024', NULL, NULL, NULL, NULL, 1, NULL),
-(2, 2, 'Avatar: The Way of Water', '03:12:00.000000', '2022', NULL, NULL, NULL, NULL, 1, NULL),
-(3, 3, 'The Super Mario Bros.', '01:32:00.000000', '2023', NULL, NULL, NULL, NULL, 1, NULL),
-(4, 4, 'Oppenheimer', '03:00:00.000000', '2023', NULL, NULL, NULL, NULL, 1, NULL),
-(5, 6, 'The Devil Wears Prada 2', '01:50:00.000000', '2026', NULL, NULL, NULL, NULL, 2, NULL),
-(6, 7, 'The Garfield Movie', '01:41:00.000000', '2024', NULL, NULL, NULL, NULL, 2, NULL),
-(7, 8, 'Central Intelligence', '01:47:00.000000', '2016', NULL, NULL, NULL, NULL, 2, NULL),
-(8, NULL, 'No Hard Feelings', '01:43:00.000000', '2023', NULL, NULL, NULL, NULL, 2, NULL),
-(9, 10, 'Barbie', '01:54:00.000000', '2023', NULL, NULL, NULL, NULL, 2, '2026-07-02'),
-(10, 11, 'Gladiator II', '02:30:00.000000', '2024', NULL, NULL, NULL, NULL, 2, '2026-04-22');
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(1, 1, 'Dune: Part Two', '02:46:00.000000', '2024', NULL, NULL, NULL, NULL, 1, NULL);
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(2, 2, 'Avatar: The Way of Water', '03:12:00.000000', '2022', NULL, NULL, NULL, NULL, 1, NULL);
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(3, 3, 'The Super Mario Bros.', '01:32:00.000000', '2023', NULL, NULL, NULL, NULL, 1, NULL);
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(4, 4, 'Oppenheimer', '03:00:00.000000', '2023', NULL, NULL, NULL, NULL, 1, NULL);
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(5, 6, 'The Devil Wears Prada 2', '01:50:00.000000', '2026', NULL, NULL, NULL, NULL, 2, NULL);
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(6, 7, 'The Garfield Movie', '01:41:00.000000', '2024', NULL, NULL, NULL, NULL, 2, NULL);
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(7, 8, 'Central Intelligence', '01:47:00.000000', '2016', NULL, NULL, NULL, NULL, 2, NULL);
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(8, NULL, 'No Hard Feelings', '01:43:00.000000', '2023', NULL, NULL, NULL, NULL, 2, NULL);
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(9, 10, 'Barbie', '01:54:00.000000', '2023', NULL, NULL, NULL, NULL, 2, '2026-07-02');
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(10, 11, 'Gladiator II', '02:30:00.000000', '2024', NULL, NULL, NULL, NULL, 2, '2026-04-22');
 
 -- --------------------------------------------------------
 
@@ -143,18 +140,53 @@ CREATE TABLE `regjisor` (
 -- Dumping data for table `regjisor`
 --
 
-INSERT INTO `regjisor` (`regjisor_id`, `regjisor_emri`) VALUES
-(1, 'Denis Villeneuve'),
-(2, 'James Cameron'),
-(3, 'Aaron Horvath'),
-(4, 'Christopher Nolan'),
-(5, 'Todd Phillips'),
-(6, 'David Frankel'),
-(7, 'Mark Dindal'),
-(8, 'Rawson Marshall Thurber'),
-(9, 'Gene Stupnitsky'),
-(10, 'Greta Gerwig'),
-(11, 'Ridley Scott');
+INSERT DELAYED IGNORE INTO `regjisor` (`regjisor_id`, `regjisor_emri`) VALUES(1, 'Denis Villeneuve');
+INSERT DELAYED IGNORE INTO `regjisor` (`regjisor_id`, `regjisor_emri`) VALUES(2, 'James Cameron');
+INSERT DELAYED IGNORE INTO `regjisor` (`regjisor_id`, `regjisor_emri`) VALUES(3, 'Aaron Horvath');
+INSERT DELAYED IGNORE INTO `regjisor` (`regjisor_id`, `regjisor_emri`) VALUES(4, 'Christopher Nolan');
+INSERT DELAYED IGNORE INTO `regjisor` (`regjisor_id`, `regjisor_emri`) VALUES(5, 'Todd Phillips');
+INSERT DELAYED IGNORE INTO `regjisor` (`regjisor_id`, `regjisor_emri`) VALUES(6, 'David Frankel');
+INSERT DELAYED IGNORE INTO `regjisor` (`regjisor_id`, `regjisor_emri`) VALUES(7, 'Mark Dindal');
+INSERT DELAYED IGNORE INTO `regjisor` (`regjisor_id`, `regjisor_emri`) VALUES(8, 'Rawson Marshall Thurber');
+INSERT DELAYED IGNORE INTO `regjisor` (`regjisor_id`, `regjisor_emri`) VALUES(9, 'Gene Stupnitsky');
+INSERT DELAYED IGNORE INTO `regjisor` (`regjisor_id`, `regjisor_emri`) VALUES(10, 'Greta Gerwig');
+INSERT DELAYED IGNORE INTO `regjisor` (`regjisor_id`, `regjisor_emri`) VALUES(11, 'Ridley Scott');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rezervimi`
+--
+
+CREATE TABLE `rezervimi` (
+  `rezervimi_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `filmi_id` int(11) DEFAULT NULL,
+  `data_rezervimit` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rezervimi_vendi`
+--
+
+CREATE TABLE `rezervimi_vendi` (
+  `rezervimi_id` int(11) NOT NULL,
+  `vendi_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `salla`
+--
+
+CREATE TABLE `salla` (
+  `salla_id` int(11) NOT NULL,
+  `emri` varchar(50) NOT NULL,
+  `kapaciteti` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -171,9 +203,55 @@ CREATE TABLE `statusi` (
 -- Dumping data for table `statusi`
 --
 
-INSERT INTO `statusi` (`status_id`, `status_emri`) VALUES
-(1, 'ne kinema'),
-(2, 'se shpejti');
+INSERT DELAYED IGNORE INTO `statusi` (`status_id`, `status_emri`) VALUES(1, 'ne kinema');
+INSERT DELAYED IGNORE INTO `statusi` (`status_id`, `status_emri`) VALUES(2, 'se shpejti');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` enum('admin','klient') DEFAULT 'klient',
+  `krijuar_me` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT DELAYED IGNORE INTO `users` (`user_id`, `username`, `email`, `password`, `role`, `krijuar_me`) VALUES(1, 'admin', 'admin@test.com', '12345678', 'admin', '2026-05-07 11:31:24');
+INSERT DELAYED IGNORE INTO `users` (`user_id`, `username`, `email`, `password`, `role`, `krijuar_me`) VALUES(2, 'klient', 'klient@test.com', '12345678', 'klient', '2026-05-07 11:39:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vendi`
+--
+
+CREATE TABLE `vendi` (
+  `vendi_id` int(11) NOT NULL,
+  `salla_id` int(11) DEFAULT NULL,
+  `rreshti` char(1) DEFAULT NULL,
+  `numri` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `view_filmat_ne_kinema`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_filmat_ne_kinema` (
+`filmi_id` int(11)
+,`titulli` varchar(100)
+,`status_emri` varchar(50)
+);
 
 -- --------------------------------------------------------
 
@@ -190,16 +268,15 @@ CREATE TABLE `zhanri` (
 -- Dumping data for table `zhanri`
 --
 
-INSERT INTO `zhanri` (`zhanri_id`, `zhanri_emri`) VALUES
-(0, 'Sci-Fi'),
-(1, 'Aksion'),
-(2, 'Aventure'),
-(3, 'Animacion'),
-(4, 'Komedi'),
-(5, 'Fantazi'),
-(6, 'Drame'),
-(7, 'Thriller'),
-(8, 'Biografi');
+INSERT DELAYED IGNORE INTO `zhanri` (`zhanri_id`, `zhanri_emri`) VALUES(0, 'Sci-Fi');
+INSERT DELAYED IGNORE INTO `zhanri` (`zhanri_id`, `zhanri_emri`) VALUES(1, 'Aksion');
+INSERT DELAYED IGNORE INTO `zhanri` (`zhanri_id`, `zhanri_emri`) VALUES(2, 'Aventure');
+INSERT DELAYED IGNORE INTO `zhanri` (`zhanri_id`, `zhanri_emri`) VALUES(3, 'Animacion');
+INSERT DELAYED IGNORE INTO `zhanri` (`zhanri_id`, `zhanri_emri`) VALUES(4, 'Komedi');
+INSERT DELAYED IGNORE INTO `zhanri` (`zhanri_id`, `zhanri_emri`) VALUES(5, 'Fantazi');
+INSERT DELAYED IGNORE INTO `zhanri` (`zhanri_id`, `zhanri_emri`) VALUES(6, 'Drame');
+INSERT DELAYED IGNORE INTO `zhanri` (`zhanri_id`, `zhanri_emri`) VALUES(7, 'Thriller');
+INSERT DELAYED IGNORE INTO `zhanri` (`zhanri_id`, `zhanri_emri`) VALUES(8, 'Biografi');
 
 -- --------------------------------------------------------
 
@@ -216,26 +293,34 @@ CREATE TABLE `zhanri_filmi` (
 -- Dumping data for table `zhanri_filmi`
 --
 
-INSERT INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES
-(1, 0),
-(1, 1),
-(2, 0),
-(2, 2),
-(3, 3),
-(3, 2),
-(4, 8),
-(4, 6),
-(5, 4),
-(5, 6),
-(6, 3),
-(6, 4),
-(7, 1),
-(7, 4),
-(9, 4),
-(9, 2),
-(10, 1),
-(10, 6),
-(8, 4);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(1, 0);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(1, 1);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(2, 0);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(2, 2);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(3, 3);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(3, 2);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(4, 8);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(4, 6);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(5, 4);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(5, 6);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(6, 3);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(6, 4);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(7, 1);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(7, 4);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(9, 4);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(9, 2);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(10, 1);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(10, 6);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(8, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `view_filmat_ne_kinema`
+--
+DROP TABLE IF EXISTS `view_filmat_ne_kinema`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_filmat_ne_kinema`  AS SELECT `f`.`filmi_id` AS `filmi_id`, `f`.`titulli` AS `titulli`, `s`.`status_emri` AS `status_emri` FROM (`filmi` `f` join `statusi` `s` on(`f`.`status_id` = `s`.`status_id`)) WHERE `f`.`status_id` = 1 ;
 
 --
 -- Indexes for dumped tables
@@ -269,10 +354,46 @@ ALTER TABLE `regjisor`
   ADD PRIMARY KEY (`regjisor_id`);
 
 --
+-- Indexes for table `rezervimi`
+--
+ALTER TABLE `rezervimi`
+  ADD PRIMARY KEY (`rezervimi_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `filmi_id` (`filmi_id`);
+
+--
+-- Indexes for table `rezervimi_vendi`
+--
+ALTER TABLE `rezervimi_vendi`
+  ADD PRIMARY KEY (`rezervimi_id`,`vendi_id`),
+  ADD KEY `vendi_id` (`vendi_id`);
+
+--
+-- Indexes for table `salla`
+--
+ALTER TABLE `salla`
+  ADD PRIMARY KEY (`salla_id`);
+
+--
 -- Indexes for table `statusi`
 --
 ALTER TABLE `statusi`
   ADD PRIMARY KEY (`status_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `vendi`
+--
+ALTER TABLE `vendi`
+  ADD PRIMARY KEY (`vendi_id`),
+  ADD KEY `salla_id` (`salla_id`);
 
 --
 -- Indexes for table `zhanri`
@@ -310,10 +431,34 @@ ALTER TABLE `regjisor`
   MODIFY `regjisor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `rezervimi`
+--
+ALTER TABLE `rezervimi`
+  MODIFY `rezervimi_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `salla`
+--
+ALTER TABLE `salla`
+  MODIFY `salla_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `statusi`
 --
 ALTER TABLE `statusi`
   MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `vendi`
+--
+ALTER TABLE `vendi`
+  MODIFY `vendi_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -332,6 +477,26 @@ ALTER TABLE `aktori_filmi`
 ALTER TABLE `filmi`
   ADD CONSTRAINT `fk_filmi_regjisor` FOREIGN KEY (`regjisor_id`) REFERENCES `regjisor` (`regjisor_id`),
   ADD CONSTRAINT `fk_filmi_statusi` FOREIGN KEY (`status_id`) REFERENCES `statusi` (`status_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `rezervimi`
+--
+ALTER TABLE `rezervimi`
+  ADD CONSTRAINT `rezervimi_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `rezervimi_ibfk_2` FOREIGN KEY (`filmi_id`) REFERENCES `filmi` (`filmi_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `rezervimi_vendi`
+--
+ALTER TABLE `rezervimi_vendi`
+  ADD CONSTRAINT `rezervimi_vendi_ibfk_1` FOREIGN KEY (`rezervimi_id`) REFERENCES `rezervimi` (`rezervimi_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `rezervimi_vendi_ibfk_2` FOREIGN KEY (`vendi_id`) REFERENCES `vendi` (`vendi_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `vendi`
+--
+ALTER TABLE `vendi`
+  ADD CONSTRAINT `vendi_ibfk_1` FOREIGN KEY (`salla_id`) REFERENCES `salla` (`salla_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `zhanri_filmi`
