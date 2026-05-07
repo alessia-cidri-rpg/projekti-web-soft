@@ -340,9 +340,9 @@
     <div class="modal-content">
         <span class="close-modal" onclick="closeAuth()">&times;</span>
         <h2>Log In</h2>
-        <form id="loginForm">
-            <input type="email" placeholder="Email " id="loginEmail" required>
-            <input type="password" placeholder="Password" id="loginPass" required>
+        <form id="loginForm" action="login.php" method="post">
+            <input type="email" placeholder="Email " name="username" id="loginEmail" required>
+            <input type="password" placeholder="Password" name="password" id="loginPass" required>
             <button type="submit" class="btn-auth">Log In</button>
         </form>
         <p>You don’t have an account? <span onclick="openSignUp()">Register here</span></p>
