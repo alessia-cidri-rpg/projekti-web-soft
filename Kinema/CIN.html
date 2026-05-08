@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,332 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Velora Cinema</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- CSS - STILI I FAQES -->
-    <style>
-        :root {
-            --primary: #e50914;
-            --bg-dark: #0b0b0f;
-            --card-bg: #1c1c1c;
-            --text-white: #ffffff;
-            --transition: 0.3s ease;
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-white);
-            overflow-x: hidden;
-        }
-
-/* STILI PER MODAL (LOG IN / SIGN UP) */
-.modal-overlay {
-    display: none; 
-    position: fixed; 
-    top: 0; left: 0; 
-    width: 100%; height: 100%; 
-    background: rgba(0, 0, 0, 0.9); 
-    z-index: 2000; 
-    justify-content: center; 
-    align-items: center;
-}
-
-.modal-content {
-    background: #15151a;
-    padding: 40px;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 400px;
-    border: 1px solid #333;
-    position: relative;
-    text-align: center;
-    animation: fadeIn 0.4s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.modal-content h2 {
-    margin-top: 0;
-    color: var(--primary);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.modal-content input {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    background: #0b0b0f;
-    border: 1px solid #333;
-    color: white;
-    border-radius: 5px;
-    box-sizing: border-box; /* E rëndësishme për gjerësinë */
-}
-
-.modal-content input:focus {
-    border-color: var(--primary);
-    outline: none;
-}
-
-.btn-auth {
-    background: var(--primary);
-    color: white;
-    border: none;
-    width: 100%;
-    padding: 12px;
-    margin-top: 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.close-modal {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 24px;
-    color: #666;
-    cursor: pointer;
-}
-
-.modal-content p {
-    font-size: 14px;
-    color: #888;
-    margin-top: 20px;
-}
-
-.modal-content p span {
-    color: var(--primary);
-    cursor: pointer;
-}
-
-
-        /* HEADER & NAVIGATION */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            background: rgba(0, 0, 0, 0.95);
-            position: fixed;
-            width: 90%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #222;
-        }
-
-        .logo {
-            font-size: 24px;
-            color: var(--primary);
-            font-weight: bold;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
-
-        nav { display: flex; gap: 30px; }
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            text-transform: uppercase;
-            transition: var(--transition);
-        }
-        nav a:hover { color: var(--primary); }
-
-        /* USER MENU (HAMBURGER) */
-        .user-menu { position: relative; }
-        .fa-bars { font-size: 22px; cursor: pointer; transition: var(--transition); }
-        .fa-bars:hover { color: var(--primary); }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 40px;
-            background: #111;
-            border: 1px solid #333;
-            border-radius: 5px;
-            min-width: 150px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        }
-        .dropdown-menu a {
-            display: block;
-            padding: 12px 20px;
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            transition: var(--transition);
-        }
-        .dropdown-menu a:hover { background: var(--primary); }
-        .show { display: block; }
-
-        /* HERO CAROUSEL */
-        .hero-carousel {
-            position: relative;
-            height: 90vh;
-            width: 100%;
-            overflow: hidden;
-            margin-top: 60px;
-        }
-        .slide {
-            position: absolute;
-            width: 100%; height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            display: flex;
-            align-items: center;
-        }
-        .slide.active { opacity: 1; }
-        .slide img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            filter: brightness(45%);
-        }
-        .hero-info { position: absolute; left: 10%; z-index: 10; max-width: 600px; }
-        .hero-info h1 { font-size: 60px; margin: 0; text-transform: uppercase; }
-
-        .btn-reserve {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 15px 35px;
-            font-size: 18px;
-            border-radius: 5px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 25px;
-            transition: var(--transition);
-            text-decoration: none;
-            width: fit-content;
-        }
-        .btn-reserve:hover { background: #b20710; transform: scale(1.05); }
-
-        .arrow {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            font-size: 40px; color: white; cursor: pointer; z-index: 20; padding: 20px;
-        }
-        .arrow-left { left: 20px; } .arrow-right { right: 20px; }
-
-        /* SECTIONS & TITLES */
-        .section-title { text-align: center; margin: 80px 0 40px; text-transform: uppercase; letter-spacing: 2px; }
-        .section-title::after {
-            content: ''; display: block; width: 60px; height: 3px; background: var(--primary); margin: 15px auto;
-        }
-
-        /* MOVIE GRID */
-        .movie-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            padding: 0 5%;
-        }
-        .movie-card {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            background: #000;
-        }
-        .movie-card img { width: 100%; height: 380px; object-fit: cover; transition: 0.5s; }
-        .overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            opacity: 0; transition: 0.5s; padding: 20px; text-align: center;
-        }
-        .movie-card:hover .overlay { opacity: 1; }
-        .movie-card:hover img { transform: scale(1.1); }
-        
-        .btn-more {
-            border: 2px solid var(--primary);
-            color: white;
-            padding: 10px 25px;
-            text-decoration: none;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: bold;
-            transition: var(--transition);
-        }
-        .btn-more:hover { background: var(--primary); }
-
-        /* FOOD & EVENTS DESIGN */
-        .promo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            padding: 0 5%;
-        }
-        .promo-box {
-            background: #111;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #222;
-            transition: var(--transition);
-        }
-        .promo-box:hover { border-color: var(--primary); }
-        .promo-box img { width: 100%; height: 200px; object-fit: cover; }
-        .promo-content { padding: 20px; }
-        .promo-content h3 { color: var(--primary); margin: 0 0 10px; }
-
-        /* MOVIE DETAILS PAGE (HIDDEN BY DEFAULT FOR SPA-LIKE FEEL) */
-        .movie-details-container {
-            display: none;
-            padding: 100px 5% 50px;
-        }
-        .details-flex { display: flex; gap: 50px; flex-wrap: wrap; }
-        .poster-large { width: 350px; border-radius: 15px; box-shadow: 0 0 30px rgba(229, 9, 20, 0.2); }
-        .info-list { list-style: none; padding: 0; }
-        .info-list li { margin-bottom: 15px; font-size: 16px; color: #ccc; }
-        .info-list b { color: var(--primary); margin-right: 10px; }
-
-        /* SEATING AREA */
-        .booking-section {
-            background: #15151a; padding: 40px; border-radius: 15px; margin-top: 50px; text-align: center;
-        }
-        .screen {
-            width: 70%; height: 4px; background: #555; margin: 0 auto 50px;
-            box-shadow: 0 10px 20px rgba(255,255,255,0.1); border-radius: 50%;
-        }
-        .seats-grid {
-            display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; max-width: 450px; margin: auto;
-        }
-        .seat { aspect-ratio: 1; background: #444; border-radius: 4px; cursor: pointer; }
-        .seat.taken { background: #222; cursor: not-allowed; opacity: 0.4; }
-        .seat.selected { background: var(--primary); }
-
-        footer {
-            background: #000; padding: 50px 5%; margin-top: 80px; border-top: 1px solid #222;
-            display: flex; justify-content: space-between; align-items: flex-start;
-        }
-        .footer-col h3 { color: white; font-size: 16px; margin-bottom: 20px; }
-        .footer-col a { display: block; color: #666; text-decoration: none; margin-bottom: 10px; font-size: 14px; }
-    </style>
+    <link rel="stylesheet" href="AllPages.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="shortcut icon" href="favicon/favicon.ico">
+    <link rel="manifest" href="favicon/site.webmanifest">
 </head>
+
 <body>
 
 <!-- HEADER -->
 <header>
-    <div class="logo" onclick="showHome()">VELORA CINEMA</div>
+    <a href="#home" class="logo" style="text-decoration: none;">VELORA CINEMA</a>
     <nav>
-        <a href="#" onclick="showMovies()">Movies</a>
-        <a href="#" onclick="showFood()">Food</a>
-        <a href="#" onclick="showEvents()">Events</a>
+        <a href="#movies">Movies</a>
+        <a href="#food">Food</a>
+        <a href="#events">Events</a>
     </nav>
     <div class="user-menu">
         <i class="fa fa-bars" onclick="toggleDropdown()"></i>
-        <!-- Tek Header-i ku ishte dropdown-menu -->
-<div id="dropdown" class="dropdown-menu">
-    <a href="#" onclick="openLogin()">Log In</a>
-    <a href="#" onclick="openSignUp()">Sign Up</a>
-</div>
+        <div id="dropdown" class="dropdown-menu">
+            <a href="#" onclick="openLogin()">Log In</a>
+            <a href="#" onclick="openSignUp()">Sign Up</a>
+        </div>
     </div>
 </header>
 
@@ -364,11 +61,9 @@
     </div>
 </div>
 
-
 <main id="main-content">
     <!-- HOME PAGE CONTENT -->
     <section id="home-section">
-        <!-- CAROUSEL -->
         <div class="hero-carousel">
             <div class="arrow arrow-left" onclick="changeSlide(-1)">&#10094;</div>
             <div class="arrow arrow-right" onclick="changeSlide(1)">&#10095;</div>
@@ -377,105 +72,73 @@
                 <img src="https://image.tmdb.org/t/p/original/9n2tJBplPbgR2ca05hS5CKXwP2c.jpg">
                 <div class="hero-info">
                     <h1>The Super Mario</h1>
-                    <button class="btn-reserve" onclick="showDetails('mario')"><i class="fa fa-ticket"></i> BOOK TICKET</button>
+                    <a href="#details-mario" class="btn-reserve" style="text-decoration:none;"><i class="fa fa-ticket"></i> BOOK TICKET</a>
                 </div>
             </div>
             <div class="slide">
                 <img src="https://image.tmdb.org/t/p/original/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg">
                 <div class="hero-info">
                     <h1>Dune: Part Two</h1>
-                    <button class="btn-reserve" onclick="showDetails('dune')"><i class="fa fa-ticket"></i> BOOK TICKET</button>
+                    <a href="#details-dune" class="btn-reserve" style="text-decoration:none;"><i class="fa fa-ticket"></i> BOOK TICKET</a>
                 </div>
             </div>
             <div class="slide">
                 <img src="https://image.tmdb.org/t/p/original/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg">
                 <div class="hero-info">
                     <h1>Oppenheimer</h1>
-                    <button class="btn-reserve" onclick="showDetails('oppenheimer')"><i class="fa fa-ticket"></i> BOOK TICKET</button>
+                    <a href="#details-oppenheimer" class="btn-reserve" style="text-decoration:none;"><i class="fa fa-ticket"></i> BOOK TICKET</a>
                 </div>
             </div>
         </div>
 
-        <!-- TANI NE KINEMA -->
         <h2 class="section-title">Now in Cinema</h2>
         <div class="movie-grid">
             <div class="movie-card">
                 <img src="https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg">
-                <div class="overlay"><a href="#" class="btn-more" onclick="showDetails('dune')">READ MORE</a></div>
+                <div class="overlay"><a href="#details-dune" class="btn-more">READ MORE</a></div>
             </div>
             <div class="movie-card">
                 <img src="https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg">
-                <div class="overlay"><a href="#" class="btn-more" onclick="showDetails('avatar')">READ MORE</a></div>
+                <div class="overlay"><a href="#details-avatar" class="btn-more">READ MORE</a></div>
             </div>
             <div class="movie-card">
                 <img src="https://image.tmdb.org/t/p/w500/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg">
-                <div class="overlay"><a href="#" class="btn-more" onclick="showDetails('mario')">READ MORE</a></div>
+                <div class="overlay"><a href="#details-mario" class="btn-more">READ MORE</a></div>
             </div>
             <div class="movie-card">
                 <img src="https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg">
-                <div class="overlay"><a href="#" class="btn-more" onclick="showDetails('oppenheimer')">READ MORE</a></div>
+                <div class="overlay"><a href="#details-oppenheimer" class="btn-more">READ MORE</a></div>
             </div>
         </div>
 
-        <!-- SE SHPEJTI -->
         <h2 class="section-title">Coming Soon</h2>
         <div class="movie-grid">
-            <div class="movie-card">
-                <img src="Photos/TheDevilWearsPradA2.jpeg">
-                <div class="overlay"><a href="#" class="btn-more" onclick="showComingSoon('devil')">READ MORE</a></div>
-            </div>
-            <div class="movie-card">
-                <img src="https://image.tmdb.org/t/p/w500/p6AbOJvMQhBmffd0PIv0u8ghWeY.jpg">
-                <div class="overlay"><a href="#" class="btn-more" onclick="showComingSoon('garfield')">READ MORE</a></div>
-            </div>
-            <div class="movie-card">
-                <img src="Photos/Central_Intelligence.jpg">
-                <div class="overlay"><a href="#" class="btn-more" onclick="showComingSoon('central')">READ MORE</a></div>
-            </div>
-            <div class="movie-card">
-                <img src="Photos/no-hard-feelings-movie-poster.jpg">
-                <div class="overlay"><a href="#" class="btn-more" onclick="showComingSoon('nohard')">READ MORE</a></div>
-            </div>
-            <div class="movie-card">
-                <img src="Photos/barbie.jpg">
-                <div class="overlay"><a href="#" class="btn-more" onclick="showComingSoon('barbie')">READ MORE</a></div>
-            </div>
-            <div class="movie-card">
-                <img src="Photos/gladiator-2.jpg">
-                <div class="overlay"><a href="#" class="btn-more" onclick="showComingSoon('gladiator')">READ MORE</a></div>
-            </div>
+            <div class="movie-card"><img src="Photos/TheDevilWearsPradA2.jpeg"><div class="overlay"><a href="#coming-devil" class="btn-more">READ MORE</a></div></div>
+            <div class="movie-card"><img src="https://image.tmdb.org/t/p/w500/p6AbOJvMQhBmffd0PIv0u8ghWeY.jpg"><div class="overlay"><a href="#coming-garfield" class="btn-more">READ MORE</a></div></div>
+            <div class="movie-card"><img src="Photos/Central_Intelligence.jpg"><div class="overlay"><a href="#coming-central" class="btn-more">READ MORE</a></div></div>
+            <div class="movie-card"><img src="Photos/no-hard-feelings-movie-poster.jpg"><div class="overlay"><a href="#coming-nohard" class="btn-more">READ MORE</a></div></div>
+            <div class="movie-card"><img src="Photos/barbie.jpg"><div class="overlay"><a href="#coming-barbie" class="btn-more">READ MORE</a></div></div>
+            <div class="movie-card"><img src="Photos/gladiator-2.jpg"><div class="overlay"><a href="#coming-gladiator" class="btn-more">READ MORE</a></div></div>
         </div>
 
-        <!-- PROMOTIONS -->
         <h2 class="section-title">Current Promotions</h2>
         <div class="promo-grid">
-            <div class="promo-box">
-                <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=500">
-                <div class="promo-content"><h3>🎓 Student Discount -20%</h3><p>Available every weekday for all students</p></div>
-            </div>
-            <div class="promo-box">
-                <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500">
-                <div class="promo-content"><h3>🍿 Free Popcorn Tuesdays</h3><p>Buy a ticket and get free popcorn every Tuesday.</p></div>
-            </div>
-            <div class="promo-box">
-                <img src="Photos/mysteryMoviejpg.jpg">
-                <div class="promo-content"><h3>👪 Family Sunday</h3><p>Half-price tickets for children every Sunday before 6:00 PM.</p></div>
-            </div>
+            <div class="promo-box"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=500"><div class="promo-content"><h3>🎓 Student Discount -20%</h3><p>Available every weekday for all students</p></div></div>
+            <div class="promo-box"><img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=500"><div class="promo-content"><h3>🍿 Free Popcorn Tuesdays</h3><p>Buy a ticket and get free popcorn every Tuesday.</p></div></div>
+            <div class="promo-box"><img src="Photos/mysteryMoviejpg.jpg"><div class="promo-content"><h3>👪 Family Sunday</h3><p>Half-price tickets for children every Sunday before 6:00 PM.</p></div></div>
         </div>
     </section>
 
-    <!-- MOVIES PAGE (Identik me Home + Joker/Batman) -->
+    <!-- MOVIES PAGE -->
     <section id="movies-section" style="display:none; padding-top: 100px;">
         <h2 class="section-title">All Movies</h2>
         <div class="movie-grid">
-            <!-- 4 Filmat ekzistues -->
-            <div class="movie-card"><img src="https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg"><div class="overlay"><a href="#" class="btn-more" onclick="showDetails('dune')">READ MORE</a></div></div>
-            <div class="movie-card"><img src="https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg"><div class="overlay"><a href="#" class="btn-more" onclick="showDetails('avatar')">READ MORE</a></div></div>
-            <div class="movie-card"><img src="https://image.tmdb.org/t/p/w500/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg"><div class="overlay"><a href="#" class="btn-more" onclick="showDetails('mario')">READ MORE</a></div></div>
-            <div class="movie-card"><img src="https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg"><div class="overlay"><a href="#" class="btn-more" onclick="showDetails('oppenheimer')">READ MORE</a></div></div>
-            <!-- Filmat e rinj -->
-            <div class="movie-card"><img src="Photos/Joker.jpg"><div class="overlay"><a href="#" class="btn-more" onclick="showDetails('joker')">READ MORE</a></div></div>
-            <div class="movie-card"><img src="Photos/the-dark-knight-movie.jpg"><div class="overlay"><a href="#" class="btn-more" onclick="showDetails('batman')">READ MORE</a></div></div>
+            <div class="movie-card"><img src="https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg"><div class="overlay"><a href="#details-dune" class="btn-more">READ MORE</a></div></div>
+            <div class="movie-card"><img src="https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg"><div class="overlay"><a href="#details-avatar" class="btn-more">READ MORE</a></div></div>
+            <div class="movie-card"><img src="https://image.tmdb.org/t/p/w500/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg"><div class="overlay"><a href="#details-mario" class="btn-more">READ MORE</a></div></div>
+            <div class="movie-card"><img src="https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg"><div class="overlay"><a href="#details-oppenheimer" class="btn-more">READ MORE</a></div></div>
+            <div class="movie-card"><img src="Photos/Joker.jpg"><div class="overlay"><a href="#details-joker" class="btn-more">READ MORE</a></div></div>
+            <div class="movie-card"><img src="Photos/the-dark-knight-movie.jpg"><div class="overlay"><a href="#details-batman" class="btn-more">READ MORE</a></div></div>
         </div>
     </section>
 
@@ -495,11 +158,10 @@
         <div class="promo-grid">
             <div class="promo-box"><div class="promo-content"><h3>🎬 Mystery Movie Night</h3><p>Returns this Friday at 7:00 PM. The movie is revealed only when the lights go out.</p></div></div>
             <div class="promo-box"><div class="promo-content"><h3>⭐ Premiere: The Devil Wears Prada 2</h3><p>Special red carpet event on May 15.</p></div></div>
-            
         </div>
     </section>
 
-    <!-- MOVIE DETAILS PAGE -->
+    <!-- DETAILS SECTION -->
     <section id="details-section" class="movie-details-container">
         <div class="details-flex">
             <img id="detail-img" src="" class="poster-large">
@@ -516,12 +178,10 @@
                 <div id="coming-soon-tag" style="display:none; background: var(--primary); padding: 10px; border-radius: 5px; font-weight: bold; margin-top: 20px; text-align: center;"></div>
             </div>
         </div>
-
         <div id="booking-area" class="booking-section">
             <h2>Choose Your Seats</h2>
             <div class="screen"></div>
             <div class="seats-grid">
-                <!-- Vende statike për UI/UX (Anetari 2 do i beje dinamike) -->
                 <div class="seat"></div><div class="seat"></div><div class="seat taken"></div><div class="seat"></div>
                 <div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div>
                 <div class="seat"></div><div class="seat"></div><div class="seat taken"></div><div class="seat"></div>
@@ -532,14 +192,12 @@
     </section>
 </main>
 
-<!-- FOOTER -->
 <footer>
     <div class="footer-col">
         <h3>Movies</h3>
-        <a href="#">Now in Cinema</a>
-        <a href="#">Coming Soon</a>
-        <a href="#">All Movies</a>
-
+        <a href="#movies">Now in Cinema</a>
+        <a href="#home">Coming Soon</a>
+        <a href="#movies">All Movies</a>
     </div>
     <div class="footer-col">
         <h3>Velora</h3>
@@ -547,120 +205,9 @@
         <a href="#">Contact</a>
         <a href="#">FAQ</a>
     </div>
-    <div class="footer-col">
-        <p>© 2026 Velora Cinema</p>
-    </div>
+    <div class="footer-col"><p>© 2026 Velora Cinema</p></div>
 </footer>
 
-<!-- JAVASCRIPT - LOGJIKA E FAQES -->
-<script>
-    // DATA PER FILMAT
-    const movieData = {
-        'dune': { title: 'Dune: Part Two', dur: '2h 46min', genre: 'Sci-Fi, Action', rel: '1 March 2024', dir: 'Denis Villeneuve', cast: 'Timothée Chalamet, Zendaya', img: 'https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg', desc: 'Follow the mythic journey of Paul Atreides as he unites with Chani and the Fremen.' },
-        'avatar': { title: 'Avatar: The Way of Water', dur: '3h 12min', genre: 'Sci-Fi, Adventure', rel: '16 December 2022', dir: 'James Cameron', cast: 'Sam Worthington, Zoe Saldana', img: 'https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg', desc: 'Jake Sully lives with his newfound family formed on the extrasolar moon Pandora.' },
-        'mario': { title: 'The Super Mario Bros.', dur: '1h 32min', genre: 'Animation, Adventure', rel: '5 April 2023', dir: 'Aaron Horvath', cast: 'Chris Pratt, Anya Taylor-Joy', img: 'https://image.tmdb.org/t/p/w500/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg', desc: 'A plumber named Mario travels through an underground labyrinth with his brother.' },
-        'oppenheimer': { title: 'Oppenheimer', dur: '3h 0min', genre: 'Biography, Drama', rel: '21 July 2023', dir: 'Christopher Nolan', cast: 'Cillian Murphy, Emily Blunt', img: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg', desc: 'The story of American scientist J. Robert Oppenheimer and his role in the atomic bomb.' },
-        'joker': { title: 'Joker', dur: '2h 2min', genre: 'Crime, Drama', rel: '4 October 2019', dir: 'Todd Phillips', cast: 'Joaquin Phoenix', img: 'Photos/Joker.jpg', desc: 'In Gotham City, mentally troubled comedian Arthur Fleck is disregarded by society.' },
-        'batman': { title: 'The Dark Knight', dur: '2h 56min', genre: 'Action, Crime', rel: '4 March 2022', dir: 'Christopher Nolan', cast: 'Christian Bale, Heath Ledger', img: 'Photos/the-dark-knight-movie.jpg', desc: 'When a sadistic serial killer begins murdering key political figures in Gotham.' },
-        // COMING SOON
-        'devil': { title: 'The Devil Wears Prada 2', dur: '1h 50min', genre: 'Comedy, Drama', rel: '2026', dir: 'David Frankel', cast: 'Meryl Streep, Anne Hathaway', img: 'Photos/TheDevilWearsPradA2.jpeg', date: 'Vjen më: 15 Maj 2026' },
-        'garfield': { title: 'The Garfield Movie', dur: '1h 41min', genre: 'Animation, Comedy', rel: '2024', dir: 'Mark Dindal', cast: 'Chris Pratt, Samuel L. Jackson', img: 'https://image.tmdb.org/t/p/w500/p6AbOJvMQhBmffd0PIv0u8ghWeY.jpg', date: 'Vjen më: 24 Maj 2026' },
-        'central': { title: 'Central Intelligence', dur: '1h 47min', genre: 'Action, Comedy', rel: '2016', dir: 'Rawson Marshall Thurber', cast: 'Dwayne Johnson, Kevin Hart', img: 'Photos/Central_Intelligence.jpg', date: 'Vjen më: 10 Qershor 2026' },
-        'nohard': { title: 'No Hard Feelings', dur: '1h 43min', genre: 'Comedy', rel: '2023', dir: 'Gene Stupnitsky', cast: 'Jennifer Lawrence', img: 'Photos/no-hard-feelings-movie-poster.jpg', date: 'Vjen më: 18 Qershor 2026' },
-        'barbie': { title: 'Barbie', dur: '1h 54min', genre: 'Comedy, Adventure', rel: '2023', dir: 'Greta Gerwig', cast: 'Margot Robbie, Ryan Gosling', img: 'Photos/barbie.jpg', date: 'Vjen më: 2 Korrik 2026' },
-        'gladiator': { title: 'Gladiator II', dur: '2h 30min', genre: 'Action, Drama', rel: '2024', dir: 'Ridley Scott', cast: 'Paul Mescal, Pedro Pascal', img: 'Photos/gladiator-2.jpg', date: 'Vjen më: 22 Korrik 2026' }
-    };
-
-    // NAVIGATION LOGIC
-    function hideAll() {
-        document.getElementById('home-section').style.display = 'none';
-        document.getElementById('movies-section').style.display = 'none';
-        document.getElementById('food-section').style.display = 'none';
-        document.getElementById('events-section').style.display = 'none';
-        document.getElementById('details-section').style.display = 'none';
-    }
-
-    function showHome() { hideAll(); document.getElementById('home-section').style.display = 'block'; window.scrollTo(0,0); }
-    function showMovies() { hideAll(); document.getElementById('movies-section').style.display = 'block'; window.scrollTo(0,0); }
-    function showFood() { hideAll(); document.getElementById('food-section').style.display = 'block'; window.scrollTo(0,0); }
-    function showEvents() { hideAll(); document.getElementById('events-section').style.display = 'block'; window.scrollTo(0,0); }
-
-    function showDetails(id) {
-        hideAll();
-        const movie = movieData[id];
-        document.getElementById('detail-img').src = movie.img;
-        document.getElementById('detail-title').innerText = movie.title;
-        document.getElementById('detail-dur').innerText = movie.dur;
-        document.getElementById('detail-genre').innerText = movie.genre;
-        document.getElementById('detail-rel').innerText = movie.rel;
-        document.getElementById('detail-dir').innerText = movie.dir;
-        document.getElementById('detail-cast').innerText = movie.cast;
-        document.getElementById('detail-desc').innerText = movie.desc;
-        
-        document.getElementById('coming-soon-tag').style.display = 'none';
-        document.getElementById('booking-area').style.display = 'block';
-        document.getElementById('details-section').style.display = 'block';
-        window.scrollTo(0,0);
-    }
-
-    function showComingSoon(id) {
-        showDetails(id);
-        document.getElementById('booking-area').style.display = 'none';
-        document.getElementById('coming-soon-tag').style.display = 'block';
-        document.getElementById('coming-soon-tag').innerText = movieData[id].date;
-    }
-
-    // Logjika e CAROUSEL
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    function showSlide(index) {
-        slides.forEach(s => s.classList.remove('active'));
-        if (index >= slides.length) currentSlide = 0;
-        else if (index < 0) currentSlide = slides.length - 1;
-        else currentSlide = index;
-        slides[currentSlide].classList.add('active');
-    }
-    function changeSlide(step) { showSlide(currentSlide + step); }
-    setInterval(() => changeSlide(1), 5000);
-
-    // DROPDOWN LOGIC
-    function toggleDropdown() {
-        document.getElementById('dropdown').classList.toggle('show');
-    }
-    window.onclick = function(e) {
-        if (!e.target.matches('.fa-bars')) {
-            document.getElementById('dropdown').classList.remove('show');
-        }
-    }
-</script>
-
-<!--Pjesa e Login -->
-<script>
-// FUNKSIONET PER AUTH MODALS
-function openLogin() {
-    closeAuth();
-    document.getElementById('loginModal').style.display = 'flex';
-}
-
-function openSignUp() {
-    closeAuth();
-    document.getElementById('signupModal').style.display = 'flex';
-}
-
-function closeAuth() {
-    document.getElementById('loginModal').style.display = 'none';
-    document.getElementById('signupModal').style.display = 'none';
-}
-
-// Mbylle modalin nese klikohet jashte dritares se zeze
-window.onclick = function(event) {
-    const loginM = document.getElementById('loginModal');
-    const signupM = document.getElementById('signupModal');
-    if (event.target == loginM || event.target == signupM) {
-        closeAuth();
-    }
-}
-</script>
-
+<script src="PjesaJS.js"></script>
 </body>
 </html>
