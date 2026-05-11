@@ -107,4 +107,67 @@
         .modal-content { background: #15151a; padding: 40px; border-radius: 15px; width: 450px; border: 1px solid #333; }
         .modal-content input, .modal-content select { width: 100%; padding: 12px; margin: 10px 0; background: #000; border: 1px solid #333; color: white; border-radius: 5px; box-sizing: border-box; }
 
-    
+        /* Pjese shtese per pjs e edit movie */
+
+/* Rregullime per Modalin e ri */
+.modal-content {
+    width: 600px; 
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.input-group label, .modal-content label {
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.modal-content textarea {
+    width: 100%;
+    background: #000;
+    border: 1px solid #333;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    resize: none;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+/* Stilim i scrollbar brenda modalit */
+.modal-content::-webkit-scrollbar { width: 5px; }
+.modal-content::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+/* Pjs e butonit delete */
+.btn-delete {
+    border: 2px solid #e50914;
+    color: white;
+    background: rgba(229, 9, 20, 0.1); /* Pak i kuq transparent */
+    padding: 8px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: bold;
+    transition: 0.3s;
+    margin-left: 5px; /* Hapesire nga butoni Edit */
+}
+
+.btn-delete:hover {
+    background: #e50914; /* Behet plote i kuq kur kalon mausi */
+    transform: scale(1.05);
+}
