@@ -23,7 +23,6 @@
             <a href="#" onclick="showSection('schedule')"><i class="fa fa-calendar-alt"></i> Schedule</a>
             <a href="#" onclick="showSection('crm')"><i class="fa fa-users"></i> Customers</a>
             
-            <!-- KALIMI TE FAQJA KRYESORE -->
             <a href="CIN.html" style="margin-top: auto; color: var(--primary); border-top: 1px solid #222; padding-top: 20px;">
                 <i class="fa fa-home"></i> Back to Site
             </a>
@@ -31,7 +30,6 @@
     </aside>
 
     <main class="main-content">
-        
         <!-- SECTION 1: MOVIES -->
         <div id="movies-sec">
             <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -49,89 +47,134 @@
                         <tr><th>ID</th><th>Title</th><th>Genre</th><th>Actions</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>#001</td><td>Dune: Part Two</td><td>Sci-Fi</td><td><button class="btn-Kodi">Edit</button></td></tr>
-                        <tr><td>#002</td><td>Oppenheimer</td><td>Biography</td><td><button class="btn-Kodi">Edit</button></td></tr>
+                        <!-- Dune Example -->
+                        <tr>
+                            <td>#001</td>
+                            <td>Dune: Part Two</td>
+                            <td>Sci-Fi</td>
+                            <td>
+                                <button class="btn-Kodi" onclick="openEditModal('001', 'Dune: Part Two', 'Sci-Fi', '02:46:00', '2024', 'Denis Villeneuve')">Edit</button>
+                                <button class="btn-delete" onclick="deleteMovie('001', 'Dune: Part Two')"><i class="fa fa-trash"></i> Delete</button>
+                            </td>
+                        </tr>
+                        <!-- Oppenheimer Example -->
+                        <tr>
+                            <td>#002</td>
+                            <td>Oppenheimer</td>
+                            <td>Biography</td>
+                            <td>
+                                <button class="btn-Kodi" onclick="openEditModal('002', 'Oppenheimer', 'Biography', '03:00:00', '2023', 'Christopher Nolan')">Edit</button>
+                                <button class="btn-delete" onclick="deleteMovie('002', 'Oppenheimer')"><i class="fa fa-trash"></i> Delete</button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- SECTION 2: HALLS & SEATS (Mbushur me Frontend) -->
+        <!-- SECTIONS TJERA (Mbeten te njejta) -->
         <div id="halls-sec" style="display:none;">
             <h2 class="section-title">Halls & Seats Management</h2>
             <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>Hall 1 (IMAX)</h3>
-                    <p>64 Seats</p>
-                    <button class="btn-Kodi" style="margin-top:15px">Manage Layout</button>
-                </div>
-                <div class="stat-card">
-                    <h3>Hall 2 (Premium)</h3>
-                    <p>32 Seats</p>
-                    <button class="btn-Kodi" style="margin-top:15px">Manage Layout</button>
-                </div>
-                <div class="stat-card">
-                    <h3>Hall 3 (Standard)</h3>
-                    <p>120 Seats</p>
-                    <button class="btn-Kodi" style="margin-top:15px">Manage Layout</button>
-                </div>
+                <div class="stat-card"><h3>Hall 1 (IMAX)</h3><p>64 Seats</p><button class="btn-Kodi" style="margin-top:15px">Manage Layout</button></div>
+                <div class="stat-card"><h3>Hall 2 (Premium)</h3><p>32 Seats</p><button class="btn-Kodi" style="margin-top:15px">Manage Layout</button></div>
+                <div class="stat-card"><h3>Hall 3 (Standard)</h3><p>120 Seats</p><button class="btn-Kodi" style="margin-top:15px">Manage Layout</button></div>
             </div>
         </div>
-
-        <!-- SECTION 3: SCHEDULE (Mbushur me Frontend) -->
         <div id="schedule-sec" style="display:none;">
             <h2 class="section-title">Showtime Schedule</h2>
             <div class="admin-table-container">
                 <table class="admin-table">
-                    <thead>
-                        <tr><th>Movie Title</th><th>Hall</th><th>Time</th><th>Status</th><th>Action</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Dune: Part Two</td><td>Hall 1</td><td>19:30</td><td>Confirmed</td><td><button class="btn-Kodi">Change</button></td></tr>
-                        <tr><td>The Super Mario</td><td>Hall 3</td><td>14:00</td><td>Confirmed</td><td><button class="btn-Kodi">Change</button></td></tr>
-                    </tbody>
+                    <thead><tr><th>Movie Title</th><th>Hall</th><th>Time</th><th>Status</th><th>Action</th></tr></thead>
+                    <tbody><tr><td>Dune: Part Two</td><td>Hall 1</td><td>19:30</td><td>Confirmed</td><td><button class="btn-Kodi">Change</button></td></tr></tbody>
                 </table>
             </div>
             <button class="btn-add" style="margin-top:25px">+ Add New Showtime</button>
         </div>
-
-        <!-- SECTION 4: CRM (Klientet) -->
         <div id="crm-sec" style="display:none;">
             <h2 class="section-title">Customer Database (CRM)</h2>
             <div class="admin-table-container">
                 <table class="admin-table">
-                    <thead>
-                        <tr><th>User ID</th><th>Full Name</th><th>Email Address</th><th>Status</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>#USR-992</td><td>No name</td><td>noName@email.com</td><td style="color:#28a745">Active</td></tr>
-                        <tr><td>#USR-412</td><td>name</td><td>name@email.com</td><td style="color:#e50914">Banned</td></tr>
-                    </tbody>
+                    <thead><tr><th>User ID</th><th>Full Name</th><th>Email Address</th><th>Status</th></tr></thead>
+                    <tbody><tr><td>#USR-992</td><td>No name</td><td>noName@email.com</td><td style="color:#28a745">Active</td></tr></tbody>
                 </table>
             </div>
         </div>
-
     </main>
 
-    <!-- MODAL PER SHTIMIN E FILMAVE -->
+    <!-- MODAL PER SHTIMIN / EDITIMIN E FILMAVE -->
     <div id="addMovieModal" class="modal-overlay">
         <div class="modal-content">
-            <h2 style="color:var(--primary); margin-top:0">Add New Movie</h2>
-            <input type="text" placeholder="Movie Title">
-            <input type="text" placeholder="Genre">
-            <input type="text" placeholder="Duration (e.g. 140 min)">
-            <select>
-                <option>Now Playing</option>
-                <option>Coming Soon</option>
-            </select>
+            <h2 id="modalTitle" style="color:var(--primary); margin-top:0">Add New Movie</h2>
+            
+            <div class="modal-grid">
+                <div class="input-group">
+                    <label>Movie Title</label>
+                    <input type="text" id="movieTitle" placeholder="Title">
+                </div>
+                <div class="input-group">
+                    <label>Director</label>
+                    <input type="text" id="movieDirector" placeholder="Director Name">
+                </div>
+                <div class="input-group">
+                    <label>Genre</label>
+                    <select id="movieGenre">
+                        <option value="">Select Genre</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Action">Action</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Animation">Animation</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Thriller">Thriller</option>
+                        <option value="Biography">Biography</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Duration</label>
+                    <input type="text" id="movieDuration" placeholder="HH:MM:SS">
+                </div>
+                <div class="input-group">
+                    <label>Year</label>
+                    <input type="number" id="movieYear" placeholder="2024">
+                </div>
+                <div class="input-group">
+                    <label>Status</label>
+                    <select id="movieStatus">
+                        <option value="1">Now Playing</option>
+                        <option value="2">Coming Soon</option>
+                    </select>
+                </div>
+            </div>
+
+            <label>Description</label>
+            <textarea id="movieDesc" rows="3" placeholder="Movie description..."></textarea>
+
+            <label>Trailer Link (URL)</label>
+            <input type="text" id="movieTrailer" placeholder="https://youtube.com/...">
+
+            <div class="modal-grid">
+                <div class="input-group">
+                    <label>Poster URL</label>
+                    <input type="text" id="moviePoster" placeholder="poster.jpg">
+                </div>
+                <div class="input-group">
+                    <label>Header URL</label>
+                    <input type="text" id="movieHeader" placeholder="header.jpg">
+                </div>
+            </div>
+
+            <label>Cinema Release Date</label>
+            <input type="date" id="movieDateKinema">
+
             <div style="display:flex; gap:10px; margin-top:20px;">
-                <button class="btn-add" style="flex:1; justify-content:center;">Save</button>
+                <button class="btn-add" id="saveBtn" style="flex:1; justify-content:center;">Save</button>
                 <button onclick="toggleModal(false)" style="flex:1; background:#333; color:white; border:none; border-radius:5px; cursor:pointer;">Cancel</button>
             </div>
         </div>
     </div>
 
     <script src="Admin.js"></script>
-
 </body>
 </html>
