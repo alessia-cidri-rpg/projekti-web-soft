@@ -1,25 +1,37 @@
 <?php
-include 'db_connect.php';// lidhja me db
+include 'db_connect.php'; // lidhja me databazen
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $titulli = $_POST['titulli'];
+    $title = $_POST['title'];
+    $director = $_POST['director'];
     $genre = $_POST['genre'];
-    $kohezgjatja = $_POST['kohezgjatja'];
+    $duration = $_POST['duration'];
+    $year = $_POST['year'];
     $status = $_POST['status'];
+    $description = $_POST['description'];
+    $trailer = $_POST['trailer'];
+    $poster = $_POST['poster'];
+    $header = $_POST['header'];
+    $release_date = $_POST['release_date'];
 
-    // query per shtim filmi
-    $sql = "INSERT INTO filmi (titulli, genre, kohezgjatja, status) VALUES (?, ?, ?, ?)";
-    $sqlStatement = $conn->prepare($sql);
-    $sqlStatement->bind_param("ssss", $titulli, $genre, $kohezgjatja, $status);
+    // query me placeholders
+    $sql = "INSERT INTO filmi 
+        (titulli, regjisor, zhanri, kohezgjatja, data, status, pershkrimi, trailer_link, posteri, header, data_kinema) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    if ($sqlStatement->execute()) {
-        echo "Movie added successfully!";
-        header("Location: Admin.html"); // perdoruesi shkon auto tek faqja adminit
+    $queryStatement = $conn->prepare($sql);
+    $queryStatement->bind_param("ssssissssss", 
+        $title, $director, $genre, $duration, $year, $status, $description, $trailer, $poster, $header, $release_date
+    );
+
+    if ($queryStatement->execute()) {
+        header("Location: Admin.html");//Kthim tek faqja Adminit
         exit;
     } else {
-        echo "Error: " . $sqlStatement->error;
+        echo "Error: " . $queryStatement->error;
     }
-    $sqlStatement->close();
+
+    $queryStatement->close();
 }
 $conn->close();
 ?>

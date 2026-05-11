@@ -103,22 +103,22 @@
     </main>
 
     <!-- MODAL PER SHTIMIN / EDITIMIN E FILMAVE -->
-    <div id="addMovieModal" class="modal-overlay">
+    <form id="addMovieModal" class="modal-overlay" method="post" action="addMovie.php">
         <div class="modal-content">
             <h2 id="modalTitle" style="color:var(--primary); margin-top:0">Add New Movie</h2>
             
             <div class="modal-grid">
                 <div class="input-group">
                     <label>Movie Title</label>
-                    <input type="text" id="movieTitle" placeholder="Title">
+                    <input type="text" id="movieTitle" placeholder="Title" name="title">
                 </div>
                 <div class="input-group">
                     <label>Director</label>
-                    <input type="text" id="movieDirector" placeholder="Director Name">
+                    <input type="text" id="movieDirector" placeholder="Director Name" name="director">
                 </div>
                 <div class="input-group">
                     <label>Genre</label>
-                    <select id="movieGenre">
+                    <select id="movieGenre" name="genre">
                         <option value="">Select Genre</option>
                         <option value="Sci-Fi">Sci-Fi</option>
                         <option value="Action">Action</option>
@@ -133,15 +133,15 @@
                 </div>
                 <div class="input-group">
                     <label>Duration</label>
-                    <input type="text" id="movieDuration" placeholder="HH:MM:SS">
+                    <input type="text" id="movieDuration" placeholder="HH:MM:SS" name="duration">
                 </div>
                 <div class="input-group">
                     <label>Year</label>
-                    <input type="number" id="movieYear" placeholder="2024">
+                    <input type="number" id="movieYear" placeholder="2024" name="year">
                 </div>
                 <div class="input-group">
                     <label>Status</label>
-                    <select id="movieStatus">
+                    <select id="movieStatus" name="status">
                         <option value="1">Now Playing</option>
                         <option value="2">Coming Soon</option>
                     </select>
@@ -149,31 +149,31 @@
             </div>
 
             <label>Description</label>
-            <textarea id="movieDesc" rows="3" placeholder="Movie description..."></textarea>
+            <textarea id="movieDesc" rows="3" placeholder="Movie description..." name="description"></textarea>
 
             <label>Trailer Link (URL)</label>
-            <input type="text" id="movieTrailer" placeholder="https://youtube.com/...">
+            <input type="text" name="trailer" id="movieTrailer" placeholder="https://youtube.com/...">
 
             <div class="modal-grid">
                 <div class="input-group">
                     <label>Poster URL</label>
-                    <input type="text" id="moviePoster" placeholder="poster.jpg">
+                    <input type="text" name="poster" id="moviePoster" placeholder="poster.jpg">
                 </div>
                 <div class="input-group">
                     <label>Header URL</label>
-                    <input type="text" id="movieHeader" placeholder="header.jpg">
+                    <input type="text" name="header" id="movieHeader" placeholder="header.jpg">
                 </div>
             </div>
 
             <label>Cinema Release Date</label>
-            <input type="date" id="movieDateKinema">
+            <input type="date" id="movieDateKinema" name="release_date">
 
             <div style="display:flex; gap:10px; margin-top:20px;">
-                <button class="btn-add" id="saveBtn" style="flex:1; justify-content:center;">Save</button>
+                <button type="submit" class="btn-add" id="saveBtn" style="flex:1; justify-content:center;">Save</button>
                 <button onclick="toggleModal(false)" style="flex:1; background:#333; color:white; border:none; border-radius:5px; cursor:pointer;">Cancel</button>
             </div>
         </div>
-    </div>
+    </form>
 
     <script src="Admin.js"></script>
 </body>
