@@ -46,27 +46,8 @@
                     <thead>
                         <tr><th>ID</th><th>Title</th><th>Genre</th><th>Actions</th></tr>
                     </thead>
-                    <tbody>
-                        <!-- Dune Example -->
-                        <tr>
-                            <td>#001</td>
-                            <td>Dune: Part Two</td>
-                            <td>Sci-Fi</td>
-                            <td>
-                                <button class="btn-Kodi" onclick="openEditModal('001', 'Dune: Part Two', 'Sci-Fi', '02:46:00', '2024', 'Denis Villeneuve')">Edit</button>
-                                <button class="btn-delete" onclick="deleteMovie('001', 'Dune: Part Two')"><i class="fa fa-trash"></i> Delete</button>
-                            </td>
-                        </tr>
-                        <!-- Oppenheimer Example -->
-                        <tr>
-                            <td>#002</td>
-                            <td>Oppenheimer</td>
-                            <td>Biography</td>
-                            <td>
-                                <button class="btn-Kodi" onclick="openEditModal('002', 'Oppenheimer', 'Biography', '03:00:00', '2023', 'Christopher Nolan')">Edit</button>
-                                <button class="btn-delete" onclick="deleteMovie('002', 'Oppenheimer')"><i class="fa fa-trash"></i> Delete</button>
-                            </td>
-                        </tr>
+                    <tbody id="moviesTableBody">
+                        <!-- Rreshtat do të mbushen nga databaza -->
                     </tbody>
                 </table>
             </div>
@@ -151,9 +132,6 @@
             <label>Description</label>
             <textarea id="movieDesc" rows="3" placeholder="Movie description..." name="description"></textarea>
 
-            <label>Trailer Link (URL)</label>
-            <input type="text" name="trailer" id="movieTrailer" placeholder="https://youtube.com/...">
-
             <div class="modal-grid">
                 <div class="input-group">
                     <label>Poster URL</label>
@@ -175,6 +153,21 @@
         </div>
     </form>
 
+        ...
     <script src="Admin.js"></script>
+    <script> // Ngarko filmat sapo faqja hapet
+    document.addEventListener("DOMContentLoaded", () => {
+        loadMovies();
+    });
+
+    function loadMovies() {
+        fetch("listMovies.php")
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("moviesTableBody").innerHTML = html;
+            })
+            .catch(error => console.error("Error loading movies:", error));
+    }
+    </script>
 </body>
 </html>

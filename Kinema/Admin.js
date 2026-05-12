@@ -42,11 +42,23 @@ function openEditModal(id, title, genre, duration, year, director) {
 }
 
 // Funksioni Delete
-function deleteMovie(id, title) {
+function deleteMovie(id, title) { 
     if (confirm("Are you sure you want to delete the movie: " + title + "?")) {
-        alert("Movie #" + id + " deleted successfully!");
         // Ketu pjestari 2 do beje lidhjen me backend (p.sh. AJAX fetch)
-    }
+        fetch("deleteMovie.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: "id=" + encodeURIComponent(id)
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert("Movie #" + id + " deleted successfully!");
+            location.reload(); // rifreskon tabelen pas fshirjes
+        })
+        .catch(error => console.error("Error:", error));
+    }  
 }
 
 // Pastrimi i formes

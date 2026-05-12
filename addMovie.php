@@ -9,19 +9,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $year = $_POST['year'];
     $status = $_POST['status'];
     $description = $_POST['description'];
-    $trailer = $_POST['trailer'];
     $poster = $_POST['poster'];
     $header = $_POST['header'];
     $release_date = $_POST['release_date'];
 
     // query me placeholders
     $sql = "INSERT INTO filmi 
-        (titulli, regjisor, zhanri, kohezgjatja, data, status, pershkrimi, trailer_link, posteri, header, data_kinema) 
+        (titulli, regjisor, zhanri, kohezgjatja, data, status, pershkrimi, posteri, header, data_kinema) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $queryStatement = $conn->prepare($sql);
-    $queryStatement->bind_param("ssssissssss", 
-        $title, $director, $genre, $duration, $year, $status, $description, $trailer, $poster, $header, $release_date
+    $queryStatement->bind_param("ssssisssss", 
+        $title, $director, $genre, $duration, $year, $status, $description, $poster, $header, $release_date
     );
 
     if ($queryStatement->execute()) {
