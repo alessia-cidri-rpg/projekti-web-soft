@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +44,7 @@
         <span class="close-modal" onclick="closeAuth()">&times;</span>
         <h2>Log In</h2>
         <form id="loginForm" action="login.php" method="post">
-            <input type="email" placeholder="Email " name="username" id="loginEmail" required>
+            <input type="email" placeholder="Email " name="email" id="loginEmail" required>
             <input type="password" placeholder="Password" name="password" id="loginPass" required>
             <button type="submit" class="btn-auth">Log In</button>
         </form>
@@ -56,7 +57,8 @@
     <div class="modal-content">
         <span class="close-modal" onclick="closeAuth()">&times;</span>
         <h2>Sign up</h2>
-        <form id="signupForm">
+        <form id="signupForm" action="singup.php" method="post">
+        
             <input type="text" placeholder="Full Name" id="signupName" required>
             <input type="email" placeholder="Email Address" id="signupEmail" required>
             <input type="password" placeholder="Password" id="signupPass" required>
@@ -169,7 +171,10 @@
     <!-- DETAILS SECTION -->
     <section id="details-section" class="movie-details-container">
         <div class="details-flex">
+            
             <img id="detail-img" src="" class="poster-large">
+            
+           
             <div class="movie-info-text">
                 <h1 id="detail-title"></h1>
                 <ul class="info-list">
@@ -179,19 +184,42 @@
                     <li><b>Director:</b> <span id="detail-dir"></span></li>
                     <li><b>Cast:</b> <span id="detail-cast"></span></li>
                 </ul>
-                <p id="detail-desc" style="line-height: 1.6; color: #aaa;"></p>
+                
+                
+                <p id="detail-desc" class="movie-description"></p>
+                
                 <div id="coming-soon-tag" style="display:none; background: var(--primary); padding: 10px; border-radius: 5px; font-weight: bold; margin-top: 20px; text-align: center;"></div>
             </div>
         </div>
+       <!-- BOOKING AREA -->
         <div id="booking-area" class="booking-section">
             <h2>Choose Your Seats</h2>
             <div class="screen"></div>
-            <div class="seats-grid">
-                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div><div class="seat"></div>
+            
+            <!-- Grid-i i vendeve  -->
+            <div class="seats-grid" id="seatsContainer">
                 <div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div>
-                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div><div class="seat"></div>
-                <div class="seat"></div><div class="seat selected"></div><div class="seat"></div><div class="seat"></div>
+                <div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div>
+                <div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div>
+                <div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div>
             </div>
+
+            
+            <div class="seat-legend">
+                <div class="legend-item">
+                    <div class="seat-demo"></div>
+                    <span>Available</span>
+                </div>
+                <div class="legend-item">
+                    <div class="seat-demo taken-demo"></div>
+                    <span>Inactive (Blocked)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="seat-demo selected-demo"></div>
+                    <span>Selected</span>
+                </div>
+            </div>
+
             <button class="btn-reserve" style="margin: 30px auto;">Confirm Booking</button>
         </div>
     </section>

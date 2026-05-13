@@ -41,6 +41,7 @@ function openEditModal(id, title, genre, duration, year, director) {
     document.getElementById('movieDirector').value = director; // Tani eshte input tekst
 }
 
+
 // Funksioni Delete
 function deleteMovie(id, title) { 
     if (confirm("Are you sure you want to delete the movie: " + title + "?")) {
