@@ -104,3 +104,41 @@ window.onclick = function(event) {
     }
     if (event.target.classList.contains('modal-overlay')) closeAuth();
 }
+document.addEventListener("DOMContentLoaded", () => {
+    loadMovies();
+});
+
+function loadMovies() {
+    fetch("getMovies.php")
+        .then(res => res.json())
+        .then(data => {
+            const activeContainer = document.getElementById("activeMovies");
+            const comingContainer = document.getElementById("comingMovies");
+
+            activeContainer.innerHTML = "";
+            comingContainer.innerHTML = "";
+
+            data.active.forEach(movie => {
+                const card = document.createElement("div");
+                card.className = "movie-card";
+                card.innerHTML = `
+                    <img src="${movie.poster}" alt="${movie.titulli}">
+                    <h3>${movie.titulli}</h3>
+                    <p>${movie.genre}</p>
+                `;
+                activeContainer.appendChild(card);
+            });
+
+            data.coming.forEach(movie => {
+                const card = document.createElement("div");
+                card.className = "movie-card";
+                card.innerHTML = `
+                    <img src="${movie.poster}" alt="${movie.titulli}">
+                    <h3>${movie.titulli}</h3>
+                    <p>${movie.genre}</p>
+                `;
+                comingContainer.appendChild(card);
+            });
+        })
+        .catch(err => console.error("Error loading movies:", err));
+}

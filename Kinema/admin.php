@@ -48,41 +48,9 @@
                     </thead>
                     <tbody id="moviesTableBody">
                         <div class="movie-table">
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>TITLE</th>
-                <th>GENRE</th>
-                <th>ACTIONS</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            include 'db_connect.php'; // Lidhja që krijuam bashkë
-            
-            // Query për të marrë filmat
-            $sql = "SELECT filmi_id, titulli, zhanri FROM filmi ORDER BY filmi_id DESC";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $row['filmi_id'] . "</td>";
-                    echo "<td>" . $row['titulli'] . "</td>";
-                    echo "<td>
-                            <button class='btn-edit'>Edit</button>
-                            <button class='btn-delete'>Delete</button>
-                          </td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='4'>Nuk ka filma në databazë.</td></tr>";
-            }
-            ?>
-        </tbody>
-    </table>
-</div>
+    
+       
+        
                     </tbody>
                 </table>
             </div>
@@ -141,6 +109,7 @@
                         <option value="Adventure">Adventure</option>
                         <option value="Animation">Animation</option>
                         <option value="Comedy">Comedy</option>
+                        <option value="Crime">Comedy</option>
                         <option value="Fantasy">Fantasy</option>
                         <option value="Drama">Drama</option>
                         <option value="Thriller">Thriller</option>
@@ -183,7 +152,7 @@
 
             <div style="display:flex; gap:10px; margin-top:20px;">
                 <button type="submit" class="btn-add" id="saveBtn" style="flex:1; justify-content:center;">Save</button>
-                <button onclick="toggleModal(false)" style="flex:1; background:#333; color:white; border:none; border-radius:5px; cursor:pointer;">Cancel</button>
+                <button type ="reset" onclick="window.location.href='Admin.php'" style="flex:1; background:#333; color:white; border:none; border-radius:5px; cursor:pointer;">Cancel</button>
             </div>
         </div>
     </form>

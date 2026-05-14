@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2026 at 01:56 PM
+-- Generation Time: May 11, 2026 at 10:11 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -54,6 +54,9 @@ INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(15, 'Margo
 INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(16, 'Ryan Gosling');
 INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(17, 'Paul Mescal');
 INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(18, 'Pedro Pascal');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(19, 'Joaquin Phillips');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(20, 'Christian Bale');
+INSERT DELAYED IGNORE INTO `aktore` (`aktor_id`, `aktor_emri`) VALUES(21, 'Heath Ledger');
 
 -- --------------------------------------------------------
 
@@ -89,6 +92,9 @@ INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(3, 6);
 INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(4, 7);
 INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(4, 8);
 INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(8, 14);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(11, 19);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(12, 20);
+INSERT DELAYED IGNORE INTO `aktori_filmi` (`filmi_id`, `aktor_id`) VALUES(12, 21);
 
 -- --------------------------------------------------------
 
@@ -102,10 +108,9 @@ CREATE TABLE `filmi` (
   `titulli` varchar(100) DEFAULT NULL,
   `kohezgjatja` time(6) DEFAULT NULL,
   `data` year(4) DEFAULT NULL,
-  `trailer_link` varchar(1000) DEFAULT NULL,
   `pershkrimi` varchar(4000) DEFAULT NULL,
   `posteri` varchar(1000) DEFAULT NULL,
-  `header` varchar(1000) DEFAULT NULL,
+  `header_poster` varchar(1000) DEFAULT NULL,
   `status_id` int(11) DEFAULT NULL,
   `data_kinema` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -114,16 +119,18 @@ CREATE TABLE `filmi` (
 -- Dumping data for table `filmi`
 --
 
-INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(1, 1, 'Dune: Part Two', '02:46:00.000000', '2024', NULL, NULL, NULL, NULL, 1, NULL);
-INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(2, 2, 'Avatar: The Way of Water', '03:12:00.000000', '2022', NULL, NULL, NULL, NULL, 1, NULL);
-INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(3, 3, 'The Super Mario Bros.', '01:32:00.000000', '2023', NULL, NULL, NULL, NULL, 1, NULL);
-INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(4, 4, 'Oppenheimer', '03:00:00.000000', '2023', NULL, NULL, NULL, NULL, 1, NULL);
-INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(5, 6, 'The Devil Wears Prada 2', '01:50:00.000000', '2026', NULL, NULL, NULL, NULL, 2, NULL);
-INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(6, 7, 'The Garfield Movie', '01:41:00.000000', '2024', NULL, NULL, NULL, NULL, 2, NULL);
-INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(7, 8, 'Central Intelligence', '01:47:00.000000', '2016', NULL, NULL, NULL, NULL, 2, NULL);
-INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(8, NULL, 'No Hard Feelings', '01:43:00.000000', '2023', NULL, NULL, NULL, NULL, 2, NULL);
-INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(9, 10, 'Barbie', '01:54:00.000000', '2023', NULL, NULL, NULL, NULL, 2, '2026-07-02');
-INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `trailer_link`, `pershkrimi`, `posteri`, `header`, `status_id`, `data_kinema`) VALUES(10, 11, 'Gladiator II', '02:30:00.000000', '2024', NULL, NULL, NULL, NULL, 2, '2026-04-22');
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `pershkrimi`, `posteri`, `header_poster`, `status_id`, `data_kinema`) VALUES(1, 1, 'Dune: Part Two', '02:46:00.000000', '2024', 'Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the universe, he must prevent a terrible future only he can foresee.', 'https://xl.movieposterdb.com/24_02/2024/15239678/xl_dune-part-two-movie-poster_18c5c05f.jpg', 'https://image.tmdb.org/t/p/original/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg', 1, NULL);
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `pershkrimi`, `posteri`, `header_poster`, `status_id`, `data_kinema`) VALUES(2, 2, 'Avatar: The Way of Water', '03:12:00.000000', '2022', 'Jake Sully and Neytiri have formed a family and are doing everything to stay together. However, they must leave their home and explore the regions of Pandora. When an ancient threat resurfaces, Jake must fight a difficult war against the humans.', 'https://xl.movieposterdb.com/23_01/2022/1630029/xl_avatar-the-way-of-water-movie-poster_c111a145.png', 'https://xl.movieposterdb.com/23_01/2022/1630029/xl_avatar-the-way-of-water-movie-poster_c111a145.png', 1, NULL);
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `pershkrimi`, `posteri`, `header_poster`, `status_id`, `data_kinema`) VALUES(3, 3, 'The Super Mario Bros.', '01:32:00.000000', '2023', 'While working underground to fix a water main, Brooklyn plumbers and brothers Mario and Luigi are transported through a mysterious pipe to a magical new world. But when the siblings are separated, an epic adventure begins.', 'https://xl.movieposterdb.com/23_04/2023/6718170/xl_the-super-mario-bros-movie-movie-poster_c62032f8.jpg', 'https://xl.movieposterdb.com/25_03/2023/6718170/xl_the-super-mario-bros-movie-movie-poster_24de7c16.jpg', 1, NULL);
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `pershkrimi`, `posteri`, `header_poster`, `status_id`, `data_kinema`) VALUES(4, 4, 'Oppenheimer', '03:00:00.000000', '2023', 'During World War II, Lt. Gen. Leslie Groves Jr. appoints physicist J. Robert Oppenheimer to work on the top-secret Manhattan Project. Oppenheimer and a team of scientists spend years developing and designing the atomic bomb. Their work comes to fruition on July 16, 1945, as they witness the world\'s first nuclear explosion, forever changing the course of history.', 'https://xl.movieposterdb.com/23_06/2023/15398776/xl_oppenheimer-movie-poster_a83f1cbb.jpg', 'https://image.tmdb.org/t/p/original/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg', 1, NULL);
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `pershkrimi`, `posteri`, `header_poster`, `status_id`, `data_kinema`) VALUES(5, 6, 'The Devil Wears Prada 2', '01:50:00.000000', '2026', 'Miranda Priestly struggles against Emily Charlton, her former assistant turned rival executive, as they compete for advertising revenue amid declining print media, while Miranda nears retirement.', 'https://xl.movieposterdb.com/26_04/2026/33612209/xl_the-devil-wears-prada-2-movie-poster_6b73993b.jpg', NULL, 2, '2026-05-15');
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `pershkrimi`, `posteri`, `header_poster`, `status_id`, `data_kinema`) VALUES(6, 7, 'The Garfield Movie', '01:41:00.000000', '2024', 'After an unexpected reunion with his long-lost father, a scruffy street cat, Garfield is forced to leave his perfectly pampered life in order to take part in a high-stakes heist. And an incredible outdoor adventure begins!', 'https://xl.movieposterdb.com/24_03/2024/5779228/xl_the-garfield-movie-movie-poster_3ccdd455.jpg', NULL, 2, '2026-05-24');
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `pershkrimi`, `posteri`, `header_poster`, `status_id`, `data_kinema`) VALUES(7, 8, 'Central Intelligence', '01:47:00.000000', '2016', 'Accountant Calvin, who was the most popular boy at school, meets his ex-classmate, Bob, at a reunion. Little does he know that the meeting would wreak havoc in his quiet and peaceful life.', 'https://xl.movieposterdb.com/15_11/2016/1489889/xl_1489889_d65e6f4f.jpg', NULL, 2, '2026-06-10');
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `pershkrimi`, `posteri`, `header_poster`, `status_id`, `data_kinema`) VALUES(8, 9, 'No Hard Feelings', '01:43:00.000000', '2023', 'On the brink of losing her childhood home, a desperate woman agrees to date a wealthy couple\'s introverted and awkward 19-year-old son. However, he proves to be more of a challenge than she expected, and time is running out before she loses it all.', 'https://xl.movieposterdb.com/23_06/2023/15671028/xl_no-hard-feelings-movie-poster_0bca72a9.jpg', NULL, 2, '2026-06-18');
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `pershkrimi`, `posteri`, `header_poster`, `status_id`, `data_kinema`) VALUES(9, 10, 'Barbie', '01:54:00.000000', '2023', 'Barbie and Ken are having the time of their lives in the colorful and seemingly perfect world of Barbie Land. However, when they get a chance to go to the real world, they soon discover the joys and perils of living among humans.', 'https://xl.movieposterdb.com/23_06/2023/1517268/xl_barbie-movie-poster_780f2c78.jpg', NULL, 2, '2026-07-02');
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `pershkrimi`, `posteri`, `header_poster`, `status_id`, `data_kinema`) VALUES(10, 11, 'Gladiator II', '02:30:00.000000', '2024', 'Years after witnessing the death of Maximus at the hands of his uncle, Lucius must enter the Colosseum after the powerful emperors of Rome conquer his home. With rage in his heart and the future of the empire at stake, he looks to the past to find the strength and honor needed to return the glory of Rome to its people.', 'https://xl.movieposterdb.com/24_08/2024/9218128/xl_gladiator-2-movie-poster_c8f77715.jpg', NULL, 2, '2026-07-22');
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `pershkrimi`, `posteri`, `header_poster`, `status_id`, `data_kinema`) VALUES(11, 5, 'Joker', '02:02:00.000000', '2019', 'Arthur Fleck, a party clown, leads an impoverished life with his ailing mother. However, when society shuns him and brands him as a freak, he decides to embrace the life of crime and chaos.', 'https://xl.movieposterdb.com/21_04/2019/7286456/xl_7286456_f83eac6d.jpg', NULL, 1, NULL);
+INSERT DELAYED IGNORE INTO `filmi` (`filmi_id`, `regjisor_id`, `titulli`, `kohezgjatja`, `data`, `pershkrimi`, `posteri`, `header_poster`, `status_id`, `data_kinema`) VALUES(12, 4, 'The Dark Knight', '02:56:00.000000', '2022', 'When a menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman, James Gordon and Harvey Dent must work together to put an end to the madness.', 'https://xl.movieposterdb.com/24_06/2008/468569/xl_the-dark-knight-movie-poster_96214dbd.jpg', NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -277,6 +284,7 @@ INSERT DELAYED IGNORE INTO `zhanri` (`zhanri_id`, `zhanri_emri`) VALUES(5, 'Fant
 INSERT DELAYED IGNORE INTO `zhanri` (`zhanri_id`, `zhanri_emri`) VALUES(6, 'Drame');
 INSERT DELAYED IGNORE INTO `zhanri` (`zhanri_id`, `zhanri_emri`) VALUES(7, 'Thriller');
 INSERT DELAYED IGNORE INTO `zhanri` (`zhanri_id`, `zhanri_emri`) VALUES(8, 'Biografi');
+INSERT DELAYED IGNORE INTO `zhanri` (`zhanri_id`, `zhanri_emri`) VALUES(9, 'Krim');
 
 -- --------------------------------------------------------
 
@@ -312,6 +320,8 @@ INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(9, 2)
 INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(10, 1);
 INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(10, 6);
 INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(8, 4);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(11, 7);
+INSERT DELAYED IGNORE INTO `zhanri_filmi` (`filmi_id`, `zhanri_id`) VALUES(11, 9);
 
 -- --------------------------------------------------------
 
@@ -416,13 +426,13 @@ ALTER TABLE `zhanri_filmi`
 -- AUTO_INCREMENT for table `aktore`
 --
 ALTER TABLE `aktore`
-  MODIFY `aktor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `aktor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `filmi`
 --
 ALTER TABLE `filmi`
-  MODIFY `filmi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `filmi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `regjisor`
