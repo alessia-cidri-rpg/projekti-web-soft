@@ -29,9 +29,9 @@
             <a href="#" onclick="openLogin()">Log In</a>
             <a href="#" onclick="openSignUp()">Sign Up</a>
 
-             <a href="Admin.html" style="border-top: 1px solid #333; color: var(--primary);">
+             <!--<a href="Admin.html" style="border-top: 1px solid #333; color: var(--primary);">
         <i class="fa fa-user-shield"></i> Admin Panel
-    </a>
+    </a>-->
 
         </div>
     </div>
@@ -43,7 +43,7 @@
         <span class="close-modal" onclick="closeAuth()">&times;</span>
         <h2>Log In</h2>
         <form id="loginForm" action="login.php" method="post">
-            <input type="email" placeholder="Email " name="username" id="loginEmail" required>
+            <input type="email" placeholder="Email" name="email" id="loginEmail" required>
             <input type="password" placeholder="Password" name="password" id="loginPass" required>
             <button type="submit" class="btn-auth">Log In</button>
         </form>
@@ -56,7 +56,7 @@
     <div class="modal-content">
         <span class="close-modal" onclick="closeAuth()">&times;</span>
         <h2>Sign up</h2>
-        <form id="signupForm">
+        <form id="signupForm" action="signup.php" method="POST">
             <input type="text" placeholder="Full Name" id="signupName" required>
             <input type="email" placeholder="Email Address" id="signupEmail" required>
             <input type="password" placeholder="Password" id="signupPass" required>
