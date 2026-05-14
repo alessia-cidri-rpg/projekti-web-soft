@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
 
     // SHTUAM: id dhe username te SELECT që t'i kemi më poshtë
-    $sqlStatement = $conn->prepare("SELECT user_id, username, password, role FROM users WHERE email = ?");
+    $sqlStatement = $conn->prepare("SELECT user_id, password, role FROM users WHERE email = ?");
     
     // RREGULLUAM: Nga $username në $email
     $sqlStatement->bind_param("s", $email);
@@ -30,9 +30,8 @@ if ($password === $user['password']) {
             echo json_encode([
     "status" => "success",
     "message" => "Login i suksesshëm",
-    "user" => [
-        "id" => $user['id'],
-        "username" => $user['username'],
+    "user_id" => [
+        "user_id" => $user['user_id'],
         "role" => $user['role'] // <--- Kjo është shpëtimi!
     ]
 ]);
