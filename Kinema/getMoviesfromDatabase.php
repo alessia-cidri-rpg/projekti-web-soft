@@ -1,29 +1,24 @@
 <?php
 include 'db_connect.php';
 
-//Filma nowplaying
-$sqlActive = "SELECT filmi_id, titulli, genre, poster FROM filmi WHERE status = 1";
+// Filma nowplaying (Status 1)
+$sqlActive = "SELECT filmi_id, titulli, posteri FROM filmi WHERE status_id = 1";
 $resultActive = $conn->query($sqlActive);
 
 $activeMovies = [];
-if ($resultActive->num_rows > 0) {
-    while($row = $resultActive->fetch_assoc()) {
-        $activeMovies[] = $row;
-    }
+while($row = $resultActive->fetch_assoc()) {
+    $activeMovies[] = $row;
 }
 
-//Filma coming
-$sqlComing = "SELECT filmi_id, titulli, genre, poster FROM filmi WHERE status = 2";
+// Filma coming (Status 2)
+$sqlComing = "SELECT filmi_id, titulli, posteri FROM filmi WHERE status_id = 2";
 $resultComing = $conn->query($sqlComing);
 
 $comingMovies = [];
-if ($resultComing->num_rows > 0) {
-    while($row = $resultComing->fetch_assoc()) {
-        $comingMovies[] = $row;
-    }
+while($row = $resultComing->fetch_assoc()) {
+    $comingMovies[] = $row;
 }
 
-// Kthe JSON me dy grupe
 echo json_encode([
     "active" => $activeMovies,
     "coming" => $comingMovies

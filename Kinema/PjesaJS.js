@@ -109,33 +109,43 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function loadMovies() {
-    fetch("getMovies.php")
-        .then(res => res.json())
+    fetch("getMoviesfromDatabase.php")
+        .then(res => {
+            if (!res.ok) throw new Error("Gabim në server");
+            return res.json();
+        })
         .then(data => {
             const activeContainer = document.getElementById("activeMovies");
             const comingContainer = document.getElementById("comingMovies");
 
+            // Pastrojmë kontejnerët
             activeContainer.innerHTML = "";
             comingContainer.innerHTML = "";
 
+            // Shfaqim filmat NOW PLAYING (Status 1)
             data.active.forEach(movie => {
                 const card = document.createElement("div");
                 card.className = "movie-card";
                 card.innerHTML = `
-                    <img src="${movie.poster}" alt="${movie.titulli}">
+                    <img src="${movie.posteri}" alt="${movie.titulli}">
+                    <div class="overlay">
+                        <a href="#details-${movie.filmi_id}" class="btn-more">BOOK TICKET</a>
+                    </div>
                     <h3>${movie.titulli}</h3>
-                    <p>${movie.genre}</p>
                 `;
                 activeContainer.appendChild(card);
             });
 
+            // Shfaqim filmat COMING SOON (Status 2)
             data.coming.forEach(movie => {
                 const card = document.createElement("div");
                 card.className = "movie-card";
                 card.innerHTML = `
-                    <img src="${movie.poster}" alt="${movie.titulli}">
+                    <img src="${movie.posteri}" alt="${movie.titulli}">
+                    <div class="overlay">
+                        <a href="#coming-${movie.filmi_id}" class="btn-more">DETAILS</a>
+                    </div>
                     <h3>${movie.titulli}</h3>
-                    <p>${movie.genre}</p>
                 `;
                 comingContainer.appendChild(card);
             });
