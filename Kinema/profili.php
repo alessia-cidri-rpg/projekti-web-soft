@@ -80,15 +80,15 @@ if (!isset($_SESSION['user_id'])) {
     <div class="profile-container">
         <div class="profile-card">
             <i class="fa fa-user-circle"></i>
-            <h2>Profili Im</h2>
+            <h2>My Profile</h2>
             
             <div class="profile-info">
                 <p><strong>Email:</strong> <?php echo $_SESSION['email']; ?></p>
-                <p><strong>Roli:</strong> <?php echo ucfirst($_SESSION['role']); ?></p> 
+                <p><strong>Role:</strong> <?php echo ucfirst($_SESSION['role']); ?></p> 
                 <!--<p><strong>ID e Përdoruesit:</strong> #<?php echo $_SESSION['user_id']; ?></p> -->
             </div>
 
-            <a href="CIN.php" class="btn-back"><i class="fa fa-arrow-left"></i> Kthehu te Kinemaja</a>
+            <a href="CIN.php" class="btn-back"><i class="fa fa-arrow-left"></i> Go Back</a>
         </div>
     </div>
 

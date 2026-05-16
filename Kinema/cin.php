@@ -77,11 +77,10 @@
         <span class="close-modal" onclick="closeAuth()">&times;</span>
         <h2>Sign up</h2>
         <form id="signupForm" action="signup.php" method="POST">
-            <input type="text" placeholder="Full Name" id="signupName" required>
-            <input type="email" placeholder="Email Address" id="signupEmail" required>
-            <input type="password" placeholder="Password" id="signupPass" required>
-            <button type="submit" class="btn-auth">Sign Up</button>
-        </form>
+    <input type="email" placeholder="Email Address" name="email" id="signupEmail" required>
+    <input type="password" placeholder="Password" name="password" id="signupPass" required>
+    <button type="submit" class="btn-auth">Sign Up</button>
+</form>
         <p>Already have an account? <span onclick="openLogin()">Log in</span></p>
     </div>
 </div>
@@ -189,10 +188,17 @@
             <h2>Choose Your Seats</h2>
             <div class="screen"></div>
             <div class="seats-grid">
-                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div><div class="seat"></div>
-                <div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div>
-                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div><div class="seat"></div>
-                <div class="seat"></div><div class="seat selected"></div><div class="seat"></div><div class="seat"></div>
+                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div>
+                <div class="seat"></div><div class="seat"></div><div class="seat"></div>
+                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div>
+                <div class="seat"></div><div class="seat selected"></div><div class="seat"></div>
+                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div>
+                <div class="seat"></div><div class="seat"></div><div class="seat"></div>
+                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div>
+                <div class="seat"></div><div class="seat selected"></div><div class="seat"></div>
+                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div>
+                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div>
+                <div class="seat"></div><div class="seat"></div> 
             </div>
             <button class="btn-reserve" style="margin: 30px auto;">Confirm Booking</button>
         </div>
