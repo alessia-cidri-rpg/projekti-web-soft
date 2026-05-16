@@ -77,10 +77,10 @@
         <span class="close-modal" onclick="closeAuth()">&times;</span>
         <h2>Sign up</h2>
         <form id="signupForm" action="signup.php" method="POST">
-    <input type="email" placeholder="Email Address" name="email" id="signupEmail" required>
-    <input type="password" placeholder="Password" name="password" id="signupPass" required>
-    <button type="submit" class="btn-auth">Sign Up</button>
-</form>
+           <input type="email" placeholder="Email Address" name="email" id="signupEmail" required>
+           <input type="password" placeholder="Password" name="password" id="signupPass" required>
+           <button type="submit" class="btn-auth">Sign Up</button>
+        </form>
         <p>Already have an account? <span onclick="openLogin()">Log in</span></p>
     </div>
 </div>

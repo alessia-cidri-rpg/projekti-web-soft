@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = $checkEmail->get_result();
 
     if ($result->num_rows > 0) {
-        die("Ky email është i regjistruar një herë! Ju lutem bëni Log In.");
+        die("This email is already registred. Please use a different email or log in.");
     }
     $checkEmail->close();
 
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: cin.php");
         exit();
     } else {
-        echo "Ndodhi një gabim gjatë regjistrimit: " . $conn->error;
+        echo "Error while registration: " . $conn->error;
     }
 
     $stmt->close();
