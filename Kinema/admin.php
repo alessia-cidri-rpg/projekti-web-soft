@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Nëse përdoruesi nuk është i loguar OSE nuk është admin, e dëbojmë menjëherë te faqja kryesore
+// faqja qe eshte guest le t themi
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: cin.php");
     exit();
@@ -114,16 +114,19 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
                     <label>Genre</label>
                     <select id="movieGenre" name="genre">
                         <option value="">Select Genre</option>
-                        <option value="Sci-Fi">Sci-Fi</option>
+                        
                         <option value="Action">Action</option>
                         <option value="Adventure">Adventure</option>
                         <option value="Animation">Animation</option>
-                        <option value="Comedy">Comedy</option>
-                        <option value="Crime">Comedy</option>
-                        <option value="Fantasy">Fantasy</option>
-                        <option value="Drama">Drama</option>
-                        <option value="Thriller">Thriller</option>
                         <option value="Biography">Biography</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Crime">Crime</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Fantasy">Fantasy</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Thriller">Thriller</option>
+                        
+                    
                     </select>
                 </div>
                 <div class="input-group">
