@@ -15,7 +15,6 @@ if (!isset($_SESSION['user_id'])) {
     <title>Profili Im - Velora Cinema</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="AllPages.css"> <style>
-        /* Stil i thjeshtë dhe elegant për profilin që përshtatet me dizajnin tuaj */
         body {
             background-color: #0b0b0b;
             color: #fff;

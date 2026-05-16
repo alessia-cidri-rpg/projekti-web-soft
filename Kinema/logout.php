@@ -1,8 +1,8 @@
 <?php
-session_start();    // E nisim sesionin që ta kapim atë aktualin
-session_unset();    // Heqim të gjitha variablat e sesionit (user_id, role, email)
-session_destroy();  // E shkatërrojmë plotësisht sesionin në server
+session_start();    
+session_unset();    // hiqne varibala t euserit te sesionit
+session_destroy();  // bye bye sesioni me serverin
 
-header("Location: cin.php"); // E kthejmë përdoruesit te faqja kryesore
+header("Location: cin.php"); // ktheu te home
 exit();
 ?>

@@ -2,17 +2,16 @@
 include 'db_connect.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Marrim të dhënat nga forma HTML
-    // Kujdes: Kemi hequr username-in sipas kërkesës tënde, përdoret vetëm email dhe password
+    // Marrim nha html te dhenat
     $email = $_POST['email'] ?? ''; 
     $password = $_POST['password'] ?? ''; 
-    $role = 'klient'; // Çdo përdorues që regjistrohet vetë, bëhet automatikisht klient
+    $role = 'klient'; // automatikisht dmth
 
     if (empty($email) || empty($password)) {
         die("Ju lutem plotësoni të gjitha fushat!");
     }
 
-    // 1. Kontrollojmë nëse ky email ekziston një herë në databazë
+    // a ekzisiton
     $checkEmail = $conn->prepare("SELECT user_id FROM users WHERE email = ?");
     $checkEmail->bind_param("s", $email);
     $checkEmail->execute();
@@ -23,21 +22,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $checkEmail->close();
 
-    // 2. Ruajmë përdoruesin e ri në databazë (Fjalëkalimi ruhet direkt siç e vendose te logini)
+    // ruhet
     $stmt = $conn->prepare("INSERT INTO users (email, password, role) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $email, $password, $role);
 
     if ($stmt->execute()) {
-        // Marrim ID-në që sapo krijoi databaza për këtë klient të ri
+        // meqe id auto inkremetn 
         $new_user_id = $conn->insert_id;
 
-        // 3. LOGIMI AUTOMATIK: Nisim sesionin dhe i ruajmë të dhënat direkt
+        // logini t jete austomatik
         session_start();
         $_SESSION['user_id'] = $new_user_id;
         $_SESSION['role'] = $role;
         $_SESSION['email'] = $email; // Kjo do të sinkronizohet me dropdown-in dhe profilin
 
-        // 4. RIDREJTIMI: E dërgojmë direkt te faqja kryesore e loguar
+        // te home page dmth
         header("Location: cin.php");
         exit();
     } else {
