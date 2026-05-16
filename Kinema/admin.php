@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Nëse përdoruesi nuk është i loguar OSE nuk është admin, e dëbojmë menjëherë te faqja kryesore
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header("Location: cin.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +33,7 @@
             <a href="#" onclick="showSection('schedule')"><i class="fa fa-calendar-alt"></i> Schedule</a>
             <a href="#" onclick="showSection('crm')"><i class="fa fa-users"></i> Customers</a>
             
-            <a href="CIN.html" style="margin-top: auto; color: var(--primary); border-top: 1px solid #222; padding-top: 20px;">
+            <a href="cin.php" style="margin-top: auto; color: var(--primary); border-top: 1px solid #222; padding-top: 20px;">
                 <i class="fa fa-home"></i> Back to Site
             </a>
         </nav>

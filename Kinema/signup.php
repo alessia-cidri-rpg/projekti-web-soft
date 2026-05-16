@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Ruajmë përdoruesin e ri
         // Supozojmë se tabela i ka kolonat: username (për emrin), email, password
-        $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO users ( email, password) VALUES ( ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sss", $fullname, $email, $password);
 

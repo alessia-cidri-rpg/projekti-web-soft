@@ -104,41 +104,44 @@ window.onclick = function(event) {
     }
     if (event.target.classList.contains('modal-overlay')) closeAuth();
 }
-document.addEventListener("DOMContentLoaded", () => {
-    loadMovies();
-});
 
 function loadMovies() {
-    fetch("getMovies.php")
+    fetch("getMoviesfromDatabase.php")
         .then(res => res.json())
         .then(data => {
             const activeContainer = document.getElementById("activeMovies");
             const comingContainer = document.getElementById("comingMovies");
 
+            // Pastrojmë kontenierët
             activeContainer.innerHTML = "";
             comingContainer.innerHTML = "";
 
+            // Gjenerojmë filmat AKTIVË (Status 1)
             data.active.forEach(movie => {
-                const card = document.createElement("div");
-                card.className = "movie-card";
-                card.innerHTML = `
-                    <img src="${movie.poster}" alt="${movie.titulli}">
-                    <h3>${movie.titulli}</h3>
-                    <p>${movie.genre}</p>
-                `;
-                activeContainer.appendChild(card);
+                activeContainer.innerHTML += `
+                    <div class="movie-card">
+                        <img src="${movie.posteri}" alt="${movie.titulli}">
+                        <div class="overlay">
+                            <a href="detajet.php?id=${movie.filmi_id}" class="btn-more">BOOK TICKET</a>
+                        </div>
+                        <h3 style="text-align:center; padding:10px; font-size:16px;">${movie.titulli}</h3>
+                    </div>`;
             });
 
+            // Gjenerojmë filmat COMING SOON (Status 2)
             data.coming.forEach(movie => {
-                const card = document.createElement("div");
-                card.className = "movie-card";
-                card.innerHTML = `
-                    <img src="${movie.poster}" alt="${movie.titulli}">
-                    <h3>${movie.titulli}</h3>
-                    <p>${movie.genre}</p>
-                `;
-                comingContainer.appendChild(card);
+                comingContainer.innerHTML += `
+                    <div class="movie-card">
+                        <img src="${movie.posteri}" alt="${movie.titulli}">
+                        <div class="overlay">
+                            <a href="detajet.php?id=${movie.filmi_id}" class="btn-more">DETAILS</a>
+                        </div>
+                        <h3 style="text-align:center; padding:10px; font-size:16px;">${movie.titulli}</h3>
+                    </div>`;
             });
         })
-        .catch(err => console.error("Error loading movies:", err));
+        .catch(err => console.error("Error ngarkimi:", err));
 }
+
+// Thirr funksionin kur faqja të jetë gati
+document.addEventListener("DOMContentLoaded", loadMovies);

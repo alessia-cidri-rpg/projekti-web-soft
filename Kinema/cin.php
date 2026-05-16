@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,21 +21,39 @@
 <header>
     <a href="#home" class="logo" style="text-decoration: none;">VELORA CINEMA</a>
     <nav>
-        <a href="#movies">Movies</a>
         <a href="#food">Food</a>
         <a href="#events">Events</a>
     </nav>
     <div class="user-menu">
         <i class="fa fa-bars" onclick="toggleDropdown()"></i>
-        <div id="dropdown" class="dropdown-menu">
-            <a href="#" onclick="openLogin()">Log In</a>
-            <a href="#" onclick="openSignUp()">Sign Up</a>
+<div id="dropdown" class="dropdown-menu">
+    <?php if (isset($_SESSION['user_id'])): ?>
+        
+        <span style="padding: 10px 15px; color: #888; font-size: 0.85em; display: block; border-bottom: 1px solid #333;">
+            <i class="fa fa-user"></i> <?php echo isset($_SESSION['email']) ? $_SESSION['email'] : 'Përdorues'; ?>
+        </span>
+        
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+            <a href="admin.php" style="color: var(--primary);">
+                <i class="fa fa-user-shield"></i> Admin Panel
+            </a>
+        <?php else: ?>
+            <a href="profili.php">
+                <i class="fa fa-id-card"></i> Profili yt
+            </a>
+        <?php endif; ?>
 
-             <!--<a href="Admin.html" style="border-top: 1px solid #333; color: var(--primary);">
-        <i class="fa fa-user-shield"></i> Admin Panel
-    </a>-->
+        <a href="logout.php" style="border-top: 1px solid #333; color: #ff4d4d;">
+            <i class="fa fa-sign-out-alt"></i> Log Out
+        </a>
 
-        </div>
+    <?php else: ?>
+        
+        <a href="#" onclick="openLogin()">Log In</a>
+        <a href="#" onclick="openSignUp()">Sign Up</a>
+        
+    <?php endif; ?>
+</div>
     </div>
 </header>
 
@@ -96,19 +116,17 @@
             </div>
         </div>
 
+        <!-- SEKSIONI: NOW IN CINEMA -->
         <h2 class="section-title">Now in Cinema</h2>
-        <div class="movie-grid">
-            <div class="movie-card">
-                <div id="activeMovies" class="movies-grid"></div>
+            <div id="activeMovies" class="movie-grid">
+                <!-- Filmat do të injektohen këtu nga JS -->
             </div>
-        </div>
 
+        <!-- SEKSIONI: COMING SOON -->
         <h2 class="section-title">Coming Soon</h2>
-        <div class="movie-grid">
-            <div class="movie-card">
-                <div id="comingMovies" class="movies-grid"></div>
+            <div id="comingMovies" class="movie-grid">
+            <!-- Filmat do të injektohen këtu nga JS -->
             </div>
-        </div>
 
         <h2 class="section-title">Current Promotions</h2>
         <div class="promo-grid">
@@ -117,8 +135,8 @@
             <div class="promo-box"><img src="Photos/mysteryMoviejpg.jpg"><div class="promo-content"><h3>👪 Family Sunday</h3><p>Half-price tickets for children every Sunday before 6:00 PM.</p></div></div>
         </div>
     </section>
-
-    <!-- MOVIES PAGE -->
+<!--
+    MOVIES PAGE 
     <section id="movies-section" style="display:none; padding-top: 100px;">
         <h2 class="section-title">All Movies</h2>
         <div class="movie-grid">
@@ -130,7 +148,7 @@
             <div class="movie-card"><img src="Photos/the-dark-knight-movie.jpg"><div class="overlay"><a href="#details-batman" class="btn-more">READ MORE</a></div></div>
         </div>
     </section>
-
+-->
     <!-- FOOD PAGE -->
     <section id="food-section" style="display:none; padding-top: 100px;">
         <h2 class="section-title">Food & Drinks</h2>

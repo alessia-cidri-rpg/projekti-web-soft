@@ -5,10 +5,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    // SHTUAM: id dhe username te SELECT që t'i kemi më poshtë
-    $sqlStatement = $conn->prepare("SELECT user_id, username, password, role FROM users WHERE email = ?");
-    
-    // RREGULLUAM: Nga $username në $email
+    // Marrim të dhënat nga databaza
+    $sqlStatement = $conn->prepare("SELECT user_id, password, role FROM users WHERE email = ?");
     $sqlStatement->bind_param("s", $email);
     $sqlStatement->execute();
     $rezultati = $sqlStatement->get_result();
@@ -16,29 +14,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($rezultati->num_rows > 0) {
         $user = $rezultati->fetch_assoc();
 
-        // Gjej këtë rresht:
-// if (password_verify($password, $user['password'])) {
+        // Krahasojmë fjalëkalimin direkt
+        if ($password === $user['password']) {
+            
+            // Nisim sesionin dhe ruajmë të dhënat
+            session_start();
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['role'] = $user['role'];
+            $_SESSION['email'] = $email; // Kjo do të shfaqet te dropdown-i
 
-// Zëvendësoje me këtë:
-if ($password === $user['password']) {
-    // Tani kodi thjesht krahason tekstin që shkruan ti me atë që është në DB
-    session_start();
-    $_SESSION['user_id'] = $user['user_id'];
-    header("Location: Admin.php");
-    exit();
-} else {
-            echo json_encode([
-    "status" => "success",
-    "message" => "Login i suksesshëm",
-    "user" => [
-        "id" => $user['id'],
-        "username" => $user['username'],
-        "role" => $user['role'] // <--- Kjo është shpëtimi!
-    ]
-]);
+            // KETU BËHET RIDREJTIMI AUTOMATIK
+            if ($user['role'] === 'admin') {
+                // Nëse është admin, shkon te paneli i adminit
+                header("Location: Admin.php");
+            } else {
+                // Nëse është klient, kthehet te faqja kryesore e cila do të rifreskohet vetë!
+                header("Location: cin.php");
+            }
+            exit();
+
+        } else {
+            echo "Fjalëkalimi është i gabuar!";
         }
     } else {
-        echo json_encode(["status" => "error", "message" => "Përdoruesi nuk u gjet"]);
+        echo "Përdoruesi nuk u gjet!";
     }
     $sqlStatement->close();
 }
