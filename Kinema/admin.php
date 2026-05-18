@@ -82,7 +82,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
                     <tbody><tr><td>Dune: Part Two</td><td>Hall 1</td><td>19:30</td><td>Confirmed</td><td><button class="btn-Kodi">Change</button></td></tr></tbody>
                 </table>
             </div>
-            <button class="btn-add" style="margin-top:25px">+ Add New Showtime</button>
+         <button class="btn-add" style="margin-top:25px">+ Add New Showtime</button>
         </div>
         <div id="crm-sec" style="display:none;">
             <h2 class="section-title">Customer Database (CRM)</h2>
