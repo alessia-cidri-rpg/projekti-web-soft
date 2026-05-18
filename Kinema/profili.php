@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-// SIGURIA: Nëse dikush tenton të futet te profili pa bërë login, e dëbojmë te faqja kryesore
+// a ka bere login, perndryshe te home page
 if (!isset($_SESSION['user_id'])) {
-    header("Location: CIN.php");
+    header("Location: cin.php");
     exit();
 }
 ?>
@@ -29,7 +29,7 @@ if (!isset($_SESSION['user_id'])) {
             background-color: #141414;
             padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.1); /* Hije e lehtë e kuqe si stili Velora */
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.1);
             text-align: center;
             width: 350px;
             border: 1px solid #222;
@@ -85,7 +85,7 @@ if (!isset($_SESSION['user_id'])) {
                 <p><strong>Email:</strong> <?php echo $_SESSION['email']; ?></p>
             </div>
 
-            <a href="CIN.php" class="btn-back"><i class="fa fa-arrow-left"></i> Go Back</a>
+            <a href="cin.php" class="btn-back"><i class="fa fa-arrow-left"></i> Go Back</a>
         </div>
     </div>
 

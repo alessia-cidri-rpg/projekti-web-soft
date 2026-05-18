@@ -8,8 +8,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $role = 'klient'; // automatikisht dmth
 
     if (empty($email) || empty($password)) {
-        die("Ju lutem plotësoni të gjitha fushat!");
+        die("Please complete all fields!");
     }
+
+    if (strlen($password) < 8) {
+    // go back me error, e vume dhe te htmlja qe te jete mbi 8 elemente
+    header("Location: signup.php?error=password_too_short");
+    exit;
+}
 
     // a ekzisiton
     $checkEmail = $conn->prepare("SELECT user_id FROM users WHERE email = ?");
@@ -30,11 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // meqe id auto inkremetn 
         $new_user_id = $conn->insert_id;
 
-        // logini t jete austomatik
+        // logini t jete automatik
         session_start();
         $_SESSION['user_id'] = $new_user_id;
         $_SESSION['role'] = $role;
-        $_SESSION['email'] = $email; // Kjo do të sinkronizohet me dropdown-in dhe profilin
+        $_SESSION['email'] = $email; // te jete per dropdownin, te jete sinkron
 
         // te home page dmth
         header("Location: cin.php");

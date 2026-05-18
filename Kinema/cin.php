@@ -63,6 +63,19 @@
         <span class="close-modal" onclick="closeAuth()">&times;</span>
         <h2>Log In</h2>
         <form id="loginForm" action="login.php" method="post">
+            <?php if (isset($_GET['error'])): ?>
+          <div style="color: #ff4d4d; background: rgba(255,77,77,0.1); padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center; font-size: 14px; font-weight: bold; border: 1px solid rgba(255,77,77,0.3);">
+            <?php 
+            if ($_GET['error'] === 'empty_fields') {
+                echo "Please fill in all fields!";
+            } elseif ($_GET['error'] === 'user_not_found') {
+                echo "User not found!";
+            } elseif ($_GET['error'] === 'wrong_password') {
+                echo "Wrong password!";
+            }
+        ?>
+    </div>
+<?php endif; ?>
             <input type="email" placeholder="Email" name="email" id="loginEmail" required>
             <input type="password" placeholder="Password" name="password" id="loginPass" required>
             <button type="submit" class="btn-auth">Log In</button>
@@ -78,7 +91,7 @@
         <h2>Sign up</h2>
         <form id="signupForm" action="signup.php" method="POST">
            <input type="email" placeholder="Email Address" name="email" id="signupEmail" required>
-           <input type="password" placeholder="Password" name="password" id="signupPass" required>
+           <input type="password" placeholder="Password" name="password" id="signupPass" minlength="8" required>
            <button type="submit" class="btn-auth">Sign Up</button>
         </form>
         <p>Already have an account? <span onclick="openLogin()">Log in</span></p>
@@ -134,20 +147,7 @@
             <div class="promo-box"><img src="Photos/mysteryMoviejpg.jpg"><div class="promo-content"><h3>👪 Family Sunday</h3><p>Half-price tickets for children every Sunday before 6:00 PM.</p></div></div>
         </div>
     </section>
-<!--
-    MOVIES PAGE 
-    <section id="movies-section" style="display:none; padding-top: 100px;">
-        <h2 class="section-title">All Movies</h2>
-        <div class="movie-grid">
-            <div class="movie-card"><img src="https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg"><div class="overlay"><a href="#details-dune" class="btn-more">READ MORE</a></div></div>
-            <div class="movie-card"><img src="https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg"><div class="overlay"><a href="#details-avatar" class="btn-more">READ MORE</a></div></div>
-            <div class="movie-card"><img src="https://image.tmdb.org/t/p/w500/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg"><div class="overlay"><a href="#details-mario" class="btn-more">READ MORE</a></div></div>
-            <div class="movie-card"><img src="https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg"><div class="overlay"><a href="#details-oppenheimer" class="btn-more">READ MORE</a></div></div>
-            <div class="movie-card"><img src="Photos/Joker.jpg"><div class="overlay"><a href="#details-joker" class="btn-more">READ MORE</a></div></div>
-            <div class="movie-card"><img src="Photos/the-dark-knight-movie.jpg"><div class="overlay"><a href="#details-batman" class="btn-more">READ MORE</a></div></div>
-        </div>
-    </section>
--->
+
     <!-- FOOD PAGE -->
     <section id="food-section" style="display:none; padding-top: 100px;">
         <h2 class="section-title">Food & Drinks</h2>
@@ -184,24 +184,48 @@
                 <div id="coming-soon-tag" style="display:none; background: var(--primary); padding: 10px; border-radius: 5px; font-weight: bold; margin-top: 20px; text-align: center;"></div>
             </div>
         </div>
-        <div id="booking-area" class="booking-section">
-            <h2>Choose Your Seats</h2>
-            <div class="screen"></div>
-            <div class="seats-grid">
-                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div>
-                <div class="seat"></div><div class="seat"></div><div class="seat"></div>
-                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div>
-                <div class="seat"></div><div class="seat selected"></div><div class="seat"></div>
-                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div>
-                <div class="seat"></div><div class="seat"></div><div class="seat"></div>
-                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div>
-                <div class="seat"></div><div class="seat selected"></div><div class="seat"></div>
-                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div>
-                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div>
-                <div class="seat"></div><div class="seat"></div> 
-            </div>
-            <button class="btn-reserve" style="margin: 30px auto;">Confirm Booking</button>
-        </div>
+<div id="booking-area" class="booking-section" data-shfaqja-id="1">
+    <h2>Choose Your Seats</h2>
+    <div class="screen"></div>
+    <div class="seats-grid">
+        <div class="seat" data-id="1"></div>
+        <div class="seat" data-id="2"></div>
+        <div class="seat" data-id="3"></div>
+        <div class="seat" data-id="4"></div>
+        <div class="seat" data-id="5"></div>
+        <div class="seat" data-id="6"></div>
+        <div class="seat" data-id="7"></div>
+        <div class="seat" data-id="8"></div>
+
+        <div class="seat" data-id="9"></div>
+        <div class="seat" data-id="10"></div>
+        <div class="seat" data-id="11"></div>
+        <div class="seat" data-id="12"></div>
+        <div class="seat" data-id="13"></div>
+        <div class="seat" data-id="14"></div>
+        <div class="seat" data-id="15"></div>
+        <div class="seat" data-id="16"></div>
+
+        <div class="seat" data-id="17"></div>
+        <div class="seat" data-id="18"></div>
+        <div class="seat" data-id="19"></div>
+        <div class="seat" data-id="20"></div>
+        <div class="seat" data-id="21"></div>
+        <div class="seat" data-id="22"></div>
+        <div class="seat" data-id="23"></div>
+        <div class="seat" data-id="24"></div>
+
+        <div class="seat" data-id="25"></div>
+        <div class="seat" data-id="26"></div>
+        <div class="seat" data-id="27"></div>
+        <div class="seat" data-id="28"></div>
+        <div class="seat" data-id="29"></div>
+        <div class="seat" data-id="30"></div>
+        <div class="seat" data-id="31"></div>
+        <div class="seat" data-id="32"></div>
+    </div>
+    <button class="btn-reserve" style="margin: 30px auto;">Confirm Booking</button>
+</div>
     </section>
 </main>
 

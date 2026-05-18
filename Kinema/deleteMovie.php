@@ -2,7 +2,7 @@
 include 'db_connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
-    $id = intval($_POST['id']); // merr filmi_id si numër
+    $id = intval($_POST['id']); // merr filmi_id
 
     $sql = "DELETE FROM filmi WHERE filmi_id = ?";
     $stmt = $conn->prepare($sql);

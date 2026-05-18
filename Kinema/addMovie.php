@@ -11,46 +11,46 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $header_poster = $_POST['header_poster'];
     $data_kinema = $_POST['data_kinema'];
 
-    // Marrim listat e përzgjedhura nga checkboxes (nëse nuk ka zgjedhur asnjë, mbeten lista bosh [])
+    //qe te merren el. e zgjedhur nga checkboxet
     $zhanret_e_zgjedhura = $_POST['zhanret'] ?? [];
     $aktoret_per_lidhje = $_POST['aktoret'] ?? [];
 
-    // 1. LOGJIKA E REGJISORIT (Ekzistues apo i Ri)
+    // regjisori a eshte i ri apo ka qene ne databaze
     $regjisor_id = $_POST['regjisor_id'] ?? '';
 
-    // Nëse Admini ka shkruar një emër të ri regjisori
+    // nese i ri
     if (!empty($_POST['regjisor_i_ri'])) {
         $emri_regj_ri = trim($_POST['regjisor_i_ri']);
 
-        // Kontrollojmë mos ekziston një herë në DB për siguri
+        // e kontrollojm edhe iher mos eshte ne databaze
         $check_regj = $conn->prepare("SELECT regjisor_id FROM regjisor WHERE regjisor_emri = ?");
         $check_regj->bind_param("s", $emri_regj_ri);
         $check_regj->execute();
         $res_regj = $check_regj->get_result();
 
         if ($res_regj->num_rows > 0) {
-            // Nëse ekziston, marrim ID-në e tij ekzistuese
+            // nese gjendet, ti merret id-ja
             $row_regj = $res_regj->fetch_assoc();
             $regjisor_id = $row_regj['regjisor_id'];
         } else {
-            // Nëse është krejtësisht i ri, e ruajmë në tabelën 'regjisor'
+            // nese me verte i ri, ti jepet nje id
             $ins_regj = $conn->prepare("INSERT INTO regjisor (regjisor_emri) VALUES (?)");
             $ins_regj->bind_param("s", $emri_regj_ri);
             $ins_regj->execute();
             
-            // ID-ja e re që u krijua automatikisht
+            // id-ja e re, jepet automatikisht ngaqe ne databzae eshte auto_increment
             $regjisor_id = $conn->insert_id; 
             $ins_regj->close();
         }
         $check_regj->close();
     }
 
-    // Sigurohemi që kemi një regjisor ID përpara se të vazhdojmë
+    // te sigurohemi qe u mor id-ja e regjisorit
     if (empty($regjisor_id)) {
-        die("Ju lutem zgjedhni ose shkruani një regjisor!");
+        die("Please choose or type the director's name!");
     }
 
-    // 2. FUSIM FILMIN NË TABELË
+    // insert filmin ne tabele
     $sql = "INSERT INTO filmi 
         (regjisor_id, titulli, kohezgjatja, data, pershkrimi, posteri, header_poster, status_id, data_kinema) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -60,12 +60,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $regjisor_id, $titulli, $kohezgjatja, $data, $pershkrimi, $posteri, $header_poster, $status_id, $data_kinema
     );
 
-    // Këtu ekzekutohet VETËM NJË HERË brenda kushtit if
+    
     if ($queryStatement->execute()) {
-        // Kapim ID-në e filmit që sapo u krijua
+        // marrim id-ne e filmit qe sapo krijuam
         $filmi_id_ri = $conn->insert_id;
 
-        // 3. Ruajmë zhanret te tabela ndërmjetëse 'zhanri_filmi'
+        // ruajm zhanret te tabela ndermjetesja zhanri_film
         if (!empty($zhanret_e_zgjedhura)) {
             $stmt_zhanri = $conn->prepare("INSERT INTO zhanri_filmi (filmi_id, zhanri_id) VALUES (?, ?)");
             foreach ($zhanret_e_zgjedhura as $zhanri_id) {
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $stmt_zhanri->close();
         }
 
-        // 4. KONTROLLOJMË NËSE KA SHTUAR AKTORË TË RINJ TE FUSHA E TEKSTIT
+        // check a jane shtuar aktore te rinj, edhe nese vendosen disa emra ne input field-in, merren se bashku edhe shtohen nje nga nje
         if (!empty($_POST['aktore_te_rinj'])) {
             $aktoret_rinj_array = explode(',', $_POST['aktore_te_rinj']);
             
@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
         }
 
-        // 5. Ruajmë të gjithë aktorët (e vjetër + të rinj) te tabela ndërmjetëse 'aktori_filmi'
+        // 5ruhen dhe aktoret te tabela ndermjetese aktoret_filmi
         if (!empty($aktoret_per_lidhje)) {
             $stmt_aktori = $conn->prepare("INSERT INTO aktori_filmi (filmi_id, aktor_id) VALUES (?, ?)");
             foreach ($aktoret_per_lidhje as $aktor_id) {
@@ -114,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $stmt_aktori->close();
         }
 
-        // Çdo gjë u krye me sukses, kthehemi te paneli i adminit
+        // me sukses kthehemi te admini
         header("Location: admin.php");
         exit;
     } else {

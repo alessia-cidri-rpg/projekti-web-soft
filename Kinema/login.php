@@ -2,8 +2,14 @@
 include 'db_connect.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
+    $email = trim($_POST['email'] ?? '');
+    $password = trim($_POST['password'] ?? '');
+
+    // check mos jane lene bosh fushat, para se te komunikoje me databazen
+    if (empty($email) || empty($password)) {
+        header("Location: cin.php?error=empty_fields");
+        exit();
+    }
 
     // merren nga databaza 
     $sqlStatement = $conn->prepare("SELECT user_id, password, role FROM users WHERE email = ?");
@@ -17,11 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // passwordi t krahasohet 
         if ($password === $user['password']) {
             
-            // niset sesioni qe t ruhen t dhenat 
+            // te niset sesioni qe t ruhen t dhenat 
             session_start();
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['role'] = $user['role'];
-            $_SESSION['email'] = $email; // Kjo do të shfaqet te dropdown-i
+            $_SESSION['email'] = $email; // per dropdownin
 
             // kushti per amdinin
             if ($user['role'] === 'admin') {
@@ -34,10 +40,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
 
         } else {
-            echo "Wrong password!";
+            // ne rastet e gabimit ne passwordit gabim, rikthim
+            header("Location: cin.php?error=wrong_password");
+            exit();
         }
     } else {
-        echo "User not found!";
+        // same edhe per user not found
+        header("Location: cin.php?error=user_not_found");
+        exit();
     }
     $sqlStatement->close();
 }

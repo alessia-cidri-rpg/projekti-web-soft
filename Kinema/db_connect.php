@@ -2,19 +2,16 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db   = "kinema"; // Emri që i vure në phpMyAdmin
+$db   = "kinema"; //databaza emri
 
-// Krijo lidhjen
+// krijo lidhjen
 $conn = mysqli_connect($host, $user, $pass, $db);
 
-// Kontrollo nëse lidhja punon
+// kontrollo nese lidhja punon
 if (!$conn) {
-    die("Lidhja dështoi: " . mysqli_connect_error());
+    die("Failed " . mysqli_connect_error());
 }
 
-// Sigurohu që shkronjat shqipe (ë, ç) të dalin saktë
+// per shkronjat vecanta
 mysqli_set_charset($conn, "utf8mb4");
-
-// Opsionale: Vetëm për ta testuar në fillim
-// echo "Lidhja u krye me sukses!"; 
 ?>

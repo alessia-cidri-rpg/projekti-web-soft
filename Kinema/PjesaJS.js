@@ -145,3 +145,45 @@ function loadMovies() {
 
 // Thirr funksionin kur faqja të jetë gati
 document.addEventListener("DOMContentLoaded", loadMovies);
+
+
+
+// per pjesen e rezervimit, confirm booking
+document.querySelector("button").addEventListener("click", () => {
+
+    if (selectedSeats.length === 0) {
+        alert("Zgjidh të paktën një vend!");
+        return;
+    }
+
+    let formData = new FormData();
+
+    // merren vendet e perzgjehdura
+    selectedSeats.forEach(seat => {
+        formData.append("seats[]", seat);
+    });
+
+    // ene id-te e vendeve
+let shfaqjaID = document.getElementById("booking-area").getAttribute("data-shfaqja-id");
+formData.append("shfaqja_id", shfaqjaID);
+
+    //e ti dergojme te skedari
+    fetch("book_seats.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === "success") {
+            alert("Rezervimi u krye!");
+            
+            document.querySelectorAll(".seat.selected").forEach(seat => {
+                seat.classList.remove("selected");
+                seat.classList.add("taken");
+            });
+            selectedSeats = [];
+        } else {
+            alert(data.message); // error nese seshte loguar, esht guest le t themi
+        }
+    });
+});
