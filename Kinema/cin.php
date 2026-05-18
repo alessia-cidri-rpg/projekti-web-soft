@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,21 +21,39 @@
 <header>
     <a href="#home" class="logo" style="text-decoration: none;">VELORA CINEMA</a>
     <nav>
-        <a href="#movies">Movies</a>
         <a href="#food">Food</a>
         <a href="#events">Events</a>
     </nav>
     <div class="user-menu">
         <i class="fa fa-bars" onclick="toggleDropdown()"></i>
-        <div id="dropdown" class="dropdown-menu">
-            <a href="#" onclick="openLogin()">Log In</a>
-            <a href="#" onclick="openSignUp()">Sign Up</a>
+<div id="dropdown" class="dropdown-menu">
+    <?php if (isset($_SESSION['user_id'])): ?>
+        
+        <span style="padding: 10px 15px; color: #888; font-size: 0.85em; display: block; border-bottom: 1px solid #333;">
+            <i class="fa fa-user"></i> <?php echo isset($_SESSION['email']) ? $_SESSION['email'] : 'Përdorues'; ?>
+        </span>
+        
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+            <a href="admin.php" style="color: var(--primary);">
+                <i class="fa fa-user-shield"></i> Admin Panel
+            </a>
+        <?php else: ?>
+            <a href="profili.php">
+                <i class="fa fa-id-card"></i> Profili yt
+            </a>
+        <?php endif; ?>
 
-             <a href="Admin.html" style="border-top: 1px solid #333; color: var(--primary);">
-        <i class="fa fa-user-shield"></i> Admin Panel
-    </a>
+        <a href="logout.php" style="border-top: 1px solid #333; color: #ff4d4d;">
+            <i class="fa fa-sign-out-alt"></i> Log Out
+        </a>
 
-        </div>
+    <?php else: ?>
+        
+        <a href="#" onclick="openLogin()">Log In</a>
+        <a href="#" onclick="openSignUp()">Sign Up</a>
+        
+    <?php endif; ?>
+</div>
     </div>
 </header>
 
@@ -44,7 +63,7 @@
         <span class="close-modal" onclick="closeAuth()">&times;</span>
         <h2>Log In</h2>
         <form id="loginForm" action="login.php" method="post">
-            <input type="email" placeholder="Email " name="email" id="loginEmail" required>
+            <input type="email" placeholder="Email" name="email" id="loginEmail" required>
             <input type="password" placeholder="Password" name="password" id="loginPass" required>
             <button type="submit" class="btn-auth">Log In</button>
         </form>
@@ -57,12 +76,10 @@
     <div class="modal-content">
         <span class="close-modal" onclick="closeAuth()">&times;</span>
         <h2>Sign up</h2>
-        <form id="signupForm" action="singup.php" method="post">
-        
-            <input type="text" placeholder="Full Name" id="signupName" required>
-            <input type="email" placeholder="Email Address" id="signupEmail" required>
-            <input type="password" placeholder="Password" id="signupPass" required>
-            <button type="submit" class="btn-auth">Sign Up</button>
+        <form id="signupForm" action="signup.php" method="POST">
+           <input type="email" placeholder="Email Address" name="email" id="signupEmail" required>
+           <input type="password" placeholder="Password" name="password" id="signupPass" required>
+           <button type="submit" class="btn-auth">Sign Up</button>
         </form>
         <p>Already have an account? <span onclick="openLogin()">Log in</span></p>
     </div>
@@ -98,35 +115,17 @@
             </div>
         </div>
 
+        <!-- SEKSIONI: NOW IN CINEMA -->
         <h2 class="section-title">Now in Cinema</h2>
-        <div class="movie-grid">
-            <div class="movie-card">
-                <img src="https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg">
-                <div class="overlay"><a href="#details-dune" class="btn-more">READ MORE</a></div>
+            <div id="activeMovies" class="movie-grid">
+                <!-- Filmat do të injektohen këtu nga JS -->
             </div>
-            <div class="movie-card">
-                <img src="https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg">
-                <div class="overlay"><a href="#details-avatar" class="btn-more">READ MORE</a></div>
-            </div>
-            <div class="movie-card">
-                <img src="https://image.tmdb.org/t/p/w500/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg">
-                <div class="overlay"><a href="#details-mario" class="btn-more">READ MORE</a></div>
-            </div>
-            <div class="movie-card">
-                <img src="https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg">
-                <div class="overlay"><a href="#details-oppenheimer" class="btn-more">READ MORE</a></div>
-            </div>
-        </div>
 
+        <!-- SEKSIONI: COMING SOON -->
         <h2 class="section-title">Coming Soon</h2>
-        <div class="movie-grid">
-            <div class="movie-card"><img src="Photos/TheDevilWearsPradA2.jpeg"><div class="overlay"><a href="#coming-devil" class="btn-more">READ MORE</a></div></div>
-            <div class="movie-card"><img src="https://image.tmdb.org/t/p/w500/p6AbOJvMQhBmffd0PIv0u8ghWeY.jpg"><div class="overlay"><a href="#coming-garfield" class="btn-more">READ MORE</a></div></div>
-            <div class="movie-card"><img src="Photos/Central_Intelligence.jpg"><div class="overlay"><a href="#coming-central" class="btn-more">READ MORE</a></div></div>
-            <div class="movie-card"><img src="Photos/no-hard-feelings-movie-poster.jpg"><div class="overlay"><a href="#coming-nohard" class="btn-more">READ MORE</a></div></div>
-            <div class="movie-card"><img src="Photos/barbie.jpg"><div class="overlay"><a href="#coming-barbie" class="btn-more">READ MORE</a></div></div>
-            <div class="movie-card"><img src="Photos/gladiator-2.jpg"><div class="overlay"><a href="#coming-gladiator" class="btn-more">READ MORE</a></div></div>
-        </div>
+            <div id="comingMovies" class="movie-grid">
+            <!-- Filmat do të injektohen këtu nga JS -->
+            </div>
 
         <h2 class="section-title">Current Promotions</h2>
         <div class="promo-grid">
@@ -135,8 +134,8 @@
             <div class="promo-box"><img src="Photos/mysteryMoviejpg.jpg"><div class="promo-content"><h3>👪 Family Sunday</h3><p>Half-price tickets for children every Sunday before 6:00 PM.</p></div></div>
         </div>
     </section>
-
-    <!-- MOVIES PAGE -->
+<!--
+    MOVIES PAGE 
     <section id="movies-section" style="display:none; padding-top: 100px;">
         <h2 class="section-title">All Movies</h2>
         <div class="movie-grid">
@@ -148,7 +147,7 @@
             <div class="movie-card"><img src="Photos/the-dark-knight-movie.jpg"><div class="overlay"><a href="#details-batman" class="btn-more">READ MORE</a></div></div>
         </div>
     </section>
-
+-->
     <!-- FOOD PAGE -->
     <section id="food-section" style="display:none; padding-top: 100px;">
         <h2 class="section-title">Food & Drinks</h2>
@@ -171,10 +170,7 @@
     <!-- DETAILS SECTION -->
     <section id="details-section" class="movie-details-container">
         <div class="details-flex">
-            
             <img id="detail-img" src="" class="poster-large">
-            
-           
             <div class="movie-info-text">
                 <h1 id="detail-title"></h1>
                 <ul class="info-list">
@@ -184,42 +180,26 @@
                     <li><b>Director:</b> <span id="detail-dir"></span></li>
                     <li><b>Cast:</b> <span id="detail-cast"></span></li>
                 </ul>
-                
-                
-                <p id="detail-desc" class="movie-description"></p>
-                
+                <p id="detail-desc" style="line-height: 1.6; color: #aaa;"></p>
                 <div id="coming-soon-tag" style="display:none; background: var(--primary); padding: 10px; border-radius: 5px; font-weight: bold; margin-top: 20px; text-align: center;"></div>
             </div>
         </div>
-       <!-- BOOKING AREA -->
         <div id="booking-area" class="booking-section">
             <h2>Choose Your Seats</h2>
             <div class="screen"></div>
-            
-            <!-- Grid-i i vendeve  -->
-            <div class="seats-grid" id="seatsContainer">
-                <div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div>
-                <div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div>
-                <div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div>
-                <div class="seat"></div><div class="seat"></div><div class="seat"></div><div class="seat"></div>
+            <div class="seats-grid">
+                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div>
+                <div class="seat"></div><div class="seat"></div><div class="seat"></div>
+                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div>
+                <div class="seat"></div><div class="seat selected"></div><div class="seat"></div>
+                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div>
+                <div class="seat"></div><div class="seat"></div><div class="seat"></div>
+                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div>
+                <div class="seat"></div><div class="seat selected"></div><div class="seat"></div>
+                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div>
+                <div class="seat"></div><div class="seat"></div><div class="seat taken"></div>
+                <div class="seat"></div><div class="seat"></div> 
             </div>
-
-            
-            <div class="seat-legend">
-                <div class="legend-item">
-                    <div class="seat-demo"></div>
-                    <span>Available</span>
-                </div>
-                <div class="legend-item">
-                    <div class="seat-demo taken-demo"></div>
-                    <span>Inactive (Blocked)</span>
-                </div>
-                <div class="legend-item">
-                    <div class="seat-demo selected-demo"></div>
-                    <span>Selected</span>
-                </div>
-            </div>
-
             <button class="btn-reserve" style="margin: 30px auto;">Confirm Booking</button>
         </div>
     </section>

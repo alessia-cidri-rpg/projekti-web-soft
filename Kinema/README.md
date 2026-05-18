@@ -10,8 +10,7 @@ perzgjedhja grafike e vendeve dhe gjenerimi i konfirmimit te rezervimit.
 
 Teknologjite e perdorura perfshijne HTML, CSS dhe JS ne Client-Side per ndertimin e
 nderfaqes. Logjika dhe komunikimi me bazen e te dhenave realizohen ne Server-Side permes
-gjuhes PHP dhe sistemit MySQL. Per nje pervoje te rrjedhshme, perdoren AJAX dhe JQuery, qe
-mundesojne perditesimin e te dhenave pa rifreskuar faqen.
+gjuhes PHP dhe sistemit MySQL.
 
 Projekti do te ndjeke metodologjine agile, duke u fokusuar ne zhvillimin e moduleve kryesore
 dhe permiresimin e tyre hap pas hapi deri ne finalizim.

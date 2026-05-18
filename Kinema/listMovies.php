@@ -1,18 +1,17 @@
 <?php
 include 'db_connect.php';
 
-$sql = "SELECT filmi_id, titulli, genre FROM filmi";
+$sql = "SELECT filmi_id, titulli FROM filmi";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        echo "<tr id='row-".$row['id']."'>";
-        echo "<td>#".$row['id']."</td>";
-        echo "<td>".$row['title']."</td>";
-        echo "<td>".$row['genre']."</td>";
+        echo "<tr id='row-".$row['filmi_id']."'>";
+        echo "<td>#".$row['filmi_id']."</td>";
+        echo "<td>".$row['titulli']."</td>";
         echo "<td>
-                <button class='btn-Kodi' onclick=\"openEditModal('".$row['id']."','".$row['title']."','".$row['genre']."')\">Edit</button>
-                <button class='btn-delete' onclick=\"deleteMovie('".$row['id']."','".$row['title']."')\">
+                <button class='btn-Kodi' onclick=\"openEditModal('".$row['filmi_id']."','".$row['titulli']."')\">Edit</button>
+                <button class='btn-delete' onclick=\"deleteMovie('".$row['filmi_id']."','".$row['titulli']."')\">
                     <i class='fa fa-trash'></i> Delete
                 </button>
               </td>";
