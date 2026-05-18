@@ -83,8 +83,6 @@ if (!isset($_SESSION['user_id'])) {
             
             <div class="profile-info">
                 <p><strong>Email:</strong> <?php echo $_SESSION['email']; ?></p>
-                <p><strong>Role:</strong> <?php echo ucfirst($_SESSION['role']); ?></p> 
-                <!--<p><strong>ID e Përdoruesit:</strong> #<?php echo $_SESSION['user_id']; ?></p> -->
             </div>
 
             <a href="CIN.php" class="btn-back"><i class="fa fa-arrow-left"></i> Go Back</a>

@@ -1,7 +1,8 @@
 <?php
+include 'db_connect.php';
 session_start();
 
-// faqja qe eshte guest le t themi
+// faqja per ate qe eshte guest le t themi
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: cin.php");
     exit();
@@ -42,7 +43,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     <main class="main-content">
         <!-- SECTION 1: MOVIES -->
         <div id="movies-sec">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center; ">
                 <h2 class="section-title">Movie Management</h2>
                 <button class="btn-add" onclick="toggleModal(true)">+ Add New Movie</button>
             </div>
@@ -67,13 +68,11 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         </div>
 
         <!-- SECTIONS TJERA (Mbeten te njejta) -->
-        <div id="halls-sec" style="display:none;">
+        <div id="halls-sec" style="display:none">
             <h2 class="section-title">Halls & Seats Management</h2>
             <div class="stats-grid">
-                <div class="stat-card"><h3>Hall 1 (IMAX)</h3><p>64 Seats</p><button class="btn-Kodi" style="margin-top:15px">Manage Layout</button></div>
-                <div class="stat-card"><h3>Hall 2 (Premium)</h3><p>32 Seats</p><button class="btn-Kodi" style="margin-top:15px">Manage Layout</button></div>
-                <div class="stat-card"><h3>Hall 3 (Standard)</h3><p>120 Seats</p><button class="btn-Kodi" style="margin-top:15px">Manage Layout</button></div>
-            </div>
+                <div class="stat-card"><h3>Hall 1 (IMAX)</h3><p>32 Seats</p><button class="btn-Kodi" style="margin-top:15px">Manage Layout</button></div>
+                </div>
         </div>
         <div id="schedule-sec" style="display:none;">
             <h2 class="section-title">Showtime Schedule</h2>
@@ -97,79 +96,103 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     </main>
 
     <!-- MODAL PER SHTIMIN / EDITIMIN E FILMAVE -->
-    <form id="addMovieModal" class="modal-overlay" method="post" action="addMovie.php">
-        <div class="modal-content">
-            <h2 id="modalTitle" style="color:var(--primary); margin-top:0">Add New Movie</h2>
-            
-            <div class="modal-grid">
-                <div class="input-group">
-                    <label>Movie Title</label>
-                    <input type="text" id="movieTitle" placeholder="Title" name="title">
-                </div>
-                <div class="input-group">
-                    <label>Director</label>
-                    <input type="text" id="movieDirector" placeholder="Director Name" name="director">
-                </div>
-                <div class="input-group">
-                    <label>Genre</label>
-                    <select id="movieGenre" name="genre">
-                        <option value="">Select Genre</option>
-                        
-                        <option value="Action">Action</option>
-                        <option value="Adventure">Adventure</option>
-                        <option value="Animation">Animation</option>
-                        <option value="Biography">Biography</option>
-                        <option value="Comedy">Comedy</option>
-                        <option value="Crime">Crime</option>
-                        <option value="Drama">Drama</option>
-                        <option value="Fantasy">Fantasy</option>
-                        <option value="Sci-Fi">Sci-Fi</option>
-                        <option value="Thriller">Thriller</option>
-                        
-                    
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label>Duration</label>
-                    <input type="text" id="movieDuration" placeholder="HH:MM:SS" name="duration">
-                </div>
-                <div class="input-group">
-                    <label>Year</label>
-                    <input type="number" id="movieYear" placeholder="2024" name="year">
-                </div>
-                <div class="input-group">
-                    <label>Status</label>
-                    <select id="movieStatus" name="status">
-                        <option value="1">Now Playing</option>
-                        <option value="2">Coming Soon</option>
-                    </select>
-                </div>
+<form id="addMovieModal" class="modal-overlay" method="post" action="addMovie.php">
+    <div class="modal-content" style="max-width: 700px; max-height: 85vh; overflow-y: auto;">
+        <h2 id="modalTitle" style="color:var(--primary); margin-top:0">Add New Movie</h2>
+        
+        <div class="modal-grid">
+            <div class="input-group">
+                <label>Movie Title</label>
+                <input type="text" placeholder="Title" name="titulli" required>
             </div>
 
-            <label>Description</label>
-            <textarea id="movieDesc" rows="3" placeholder="Movie description..." name="description"></textarea>
+<div class="input-group">
+    <label>Director</label>
+    <select name="regjisor_id">
+        <option value="">Select Director</option>
+        <?php
+        $regj_q = $conn->query("SELECT regjisor_id, regjisor_emri FROM regjisor ORDER BY regjisor_emri ASC");
+        while($regj = $regj_q->fetch_assoc()) {
+            echo '<option value="'.$regj['regjisor_id'].'">'.$regj['regjisor_emri'].'</option>';
+        }
+        ?>
+    </select>
+</div>
 
-            <div class="modal-grid">
-                <div class="input-group">
-                    <label>Poster URL</label>
-                    <input type="text" name="poster" id="moviePoster" placeholder="poster.jpg">
-                </div>
-                <div class="input-group">
-                    <label>Header URL</label>
-                    <input type="text" name="header" id="movieHeader" placeholder="header.jpg">
-                </div>
+<div class="input-group">
+    <label>Or Add New Director (if not in the list):</label>
+    <input type="text" name="regjisor_i_ri" placeholder="P.sh. Quentin Tarantino">
+</div>
+
+            <div class="input-group">
+                <label>Duration</label>
+                <input type="text" placeholder="HH:MM:SS" name="kohezgjatja" required>
             </div>
 
-            <label>Cinema Release Date</label>
-            <input type="date" id="movieDateKinema" name="release_date">
+            <div class="input-group">
+                <label>Year</label>
+                <input type="number" placeholder="2026" name="data" required>
+            </div>
 
-            <div style="display:flex; gap:10px; margin-top:20px;">
-                <button type="submit" class="btn-add" id="saveBtn" style="flex:1; justify-content:center;">Save</button>
-                <button type ="reset" onclick="window.location.href='Admin.php'" style="flex:1; background:#333; color:white; border:none; border-radius:5px; cursor:pointer;">Cancel</button>
+<div class="input-group">
+    <label>Status</label>
+    <select name="status_id" required>
+        <option value="1">Now Playing</option>
+        <option value="2">Coming Soon</option>
+    </select>
+</div>
+
+            <div class="input-group">
+                <label>Cinema Release Date</label>
+                <input type="date" name="data_kinema" required>
             </div>
         </div>
-    </form>
 
+        <label style="font-weight: bold; margin-top: 15px; display: block;">Select Genres</label>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; background: #222; padding: 10px; border-radius: 5px;">
+            <?php
+            $zhanri_q = $conn->query("SELECT zhanri_id, zhanri_emri FROM zhanri ORDER BY zhanri_emri ASC");
+            while($zh = $zhanri_q->fetch_assoc()) {
+                echo '<label style="color: white; cursor:pointer;"><input type="checkbox" name="zhanret[]" value="'.$zh['zhanri_id'].'"> '.$zh['zhanri_emri'].'</label>';
+            }
+            ?>
+        </div>
+
+        <label style="font-weight: bold; margin-top: 15px; display: block;">Select Cast / Actors</label>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; background: #222; padding: 10px; border-radius: 5px; max-height: 120px; overflow-y: auto;">
+            <?php
+            $aktore_q = $conn->query("SELECT aktor_id, aktor_emri FROM aktore ORDER BY aktor_emri ASC");
+            while($ak = $aktore_q->fetch_assoc()) {
+                echo '<label style="color: white; cursor:pointer;"><input type="checkbox" name="aktoret[]" value="'.$ak['aktor_id'].'"> '.$ak['aktor_emri'].'</label>';
+            }
+            ?>
+        </div>
+
+        <div class="input-group" style="margin-top: 10px;">
+    <label>Add New Actors (if not in the list above):</label>
+    <input type="text" name="aktore_te_rinj" placeholder="P.sh. Robert Downey Jr., Scarlett Johansson">
+</div>
+
+        <label>Description</label>
+        <textarea rows="3" placeholder="Movie description..." name="pershkrimi" required></textarea>
+
+        <div class="modal-grid">
+            <div class="input-group">
+                <label>Poster URL</label>
+                <input type="text" name="posteri" placeholder="poster.jpg" required>
+            </div>
+            <div class="input-group">
+                <label>Header URL</label>
+                <input type="text" name="header_poster" placeholder="header.jpg" required>
+            </div>
+        </div>
+
+        <div style="display:flex; gap:10px; margin-top:20px;">
+            <button type="submit" class="btn-add" style="flex:1; justify-content:center;">Save Movie</button>
+            <button type="reset" onclick="window.location.href='admin.php'" style="flex:1; background:#333; color:white; border:none; border-radius:5px; cursor:pointer;">Cancel</button>
+        </div>
+    </div>
+</form>
         ...
     <script src="Admin.js"></script>
     <script> // Ngarko filmat sapo faqja hapet
