@@ -229,20 +229,44 @@
     </section>
 </main>
 
-<footer>
-    <div class="footer-col">
-        <h3>Movies</h3>
-        <a href="#movies">Now in Cinema</a>
-        <a href="#home">Coming Soon</a>
-        <a href="#movies">All Movies</a>
+<footer class="main-footer">
+    <div class="footer-container">
+       
+        <div class="footer-col">
+            <h3 class="footer-logo">VELORA CINEMA</h3>
+            <p>Bringing the best cinematic experience to your neighborhood with state-of-the-art technology.</p>
+        </div>
+
+       
+        <div class="footer-col">
+            <h3>Promotions</h3>
+            <ul>
+                <li><a>Student Discount</a></li>
+                <li><a>Free Popcorn Tuesdays</a></li>
+                <li><a>Family Sunday</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>Upcoming Events</h3>
+            <ul>
+                <li><a href="#events">Mystery Movie Night</a></li>
+                <li><a href="#events">Movie Premieres</a></li>
+                
+            </ul>
+        </div>
+
+        
+        <div class="footer-col">
+            <h3>Address Information</h3>
+            <p>Ring Center, 2nd Floor</p>
+            <p>Zogu i Zi, Tirane, Albania</p>
+        </div>
     </div>
-    <div class="footer-col">
-        <h3>Velora</h3>
-        <a href="#">About Us</a>
-        <a href="#">Contact</a>
-        <a href="#">FAQ</a>
+
+    <div class="footer-bottom">
+        <p>© 2026 Velora Cinema | All Rights Reserved</p>
     </div>
-    <div class="footer-col"><p>© 2026 Velora Cinema</p></div>
 </footer>
 
 <script src="PjesaJS.js"></script>

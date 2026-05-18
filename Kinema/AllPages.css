@@ -15,6 +15,10 @@
             overflow-x: hidden;
         }
 
+
+
+
+
 /* STILI PER MODAL (LOG IN / SIGN UP) */
 .modal-overlay {
     display: none; 
@@ -59,7 +63,7 @@
     border: 1px solid #333;
     color: white;
     border-radius: 5px;
-    box-sizing: border-box; /* E rëndësishme për gjerësinë */
+    box-sizing: border-box; 
 }
 
 .modal-content input:focus {
@@ -101,6 +105,12 @@
 }
 
 
+
+
+
+
+
+
         /* HEADER & NAVIGATION */
         header {
             display: flex;
@@ -134,6 +144,11 @@
         }
         nav a:hover { color: var(--primary); }
 
+
+
+
+
+
         /* USER MENU (HAMBURGER) */
         .user-menu { position: relative; }
         .fa-bars { font-size: 22px; cursor: pointer; transition: var(--transition); }
@@ -161,6 +176,12 @@
         }
         .dropdown-menu a:hover { background: var(--primary); }
         .show { display: block; }
+
+
+
+
+
+
 
         /* HERO CAROUSEL */
         .hero-carousel {
@@ -211,11 +232,19 @@
         }
         .arrow-left { left: 20px; } .arrow-right { right: 20px; }
 
+
+
+
+
         /* SECTIONS & TITLES */
         .section-title { text-align: center; margin: 80px 0 40px; text-transform: uppercase; letter-spacing: 2px; }
         .section-title::after {
             content: ''; display: block; width: 60px; height: 3px; background: var(--primary); margin: 15px auto;
         }
+
+
+
+
 
         /* MOVIE GRID */
         .movie-grid {
@@ -252,6 +281,10 @@
         }
         .btn-more:hover { background: var(--primary); }
 
+
+
+
+
         /* FOOD & EVENTS DESIGN */
         .promo-grid {
             display: grid;
@@ -271,39 +304,228 @@
         .promo-content { padding: 20px; }
         .promo-content h3 { color: var(--primary); margin: 0 0 10px; }
 
-        /* MOVIE DETAILS PAGE (HIDDEN BY DEFAULT FOR SPA-LIKE FEEL) */
+
+
+
+
+
+        /* MOVIE DETAILS PAGE */
+
         .movie-details-container {
             display: none;
-            padding: 100px 5% 50px;
+            padding: 120px 5% 50px;
         }
-        .details-flex { display: flex; gap: 50px; flex-wrap: wrap; }
-        .poster-large { width: 350px; border-radius: 15px; box-shadow: 0 0 30px rgba(229, 9, 20, 0.2); }
-        .info-list { list-style: none; padding: 0; }
-        .info-list li { margin-bottom: 15px; font-size: 16px; color: #ccc; }
+
+        .details-flex { 
+            display: flex; 
+            gap: 50px; 
+            align-items: flex-start; 
+            flex-wrap: nowrap; 
+        }
+
+        .poster-large { 
+            width: 350px; 
+            flex-shrink: 0; 
+            border-radius: 15px; 
+            box-shadow: 0 0 30px rgba(229, 9, 20, 0.3); 
+        }
+
+        .movie-info-text {
+            flex: 1; 
+            min-width: 0; 
+        }
+
+        .movie-info-text h1 {
+            margin-top: 0;
+            font-size: 36px;
+            color: var(--text-white);
+        }
+
+        .info-list { list-style: none; padding: 0; margin-bottom: 25px; }
+        .info-list li { margin-bottom: 12px; font-size: 16px; color: #ccc; }
         .info-list b { color: var(--primary); margin-right: 10px; }
 
-        /* SEATING AREA */
-        .booking-section {
-            background: #15151a; padding: 40px; border-radius: 15px; margin-top: 50px; text-align: center;
+        .movie-description {
+            line-height: 1.8;
+            color: #bbb;
+            font-size: 17px;
+            max-width: 1000px; 
         }
-        .screen {
-            width: 70%; height: 4px; background: #555; margin: 0 auto 50px;
-            box-shadow: 0 10px 20px rgba(255,255,255,0.1); border-radius: 50%;
-        }
-        .seats-grid {
-            display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; max-width: 450px; margin: auto;
-        }
-        .seat { aspect-ratio: 1; background: #444; border-radius: 4px; cursor: pointer; }
-        .seat.taken { background: #222; cursor: not-allowed; opacity: 0.4; }
-        .seat.selected { background: var(--primary); }
 
-        footer {
-            background: #000; padding: 50px 5%; margin-top: 80px; border-top: 1px solid #222;
-            display: flex; justify-content: space-between; align-items: flex-start;
+        /*(Mobile Responsive) */
+        @media (max-width: 900px) {
+            .details-flex {
+                flex-wrap: wrap; 
+                justify-content: center;
+                text-align: center;
+            }
+            .poster-large {
+                width: 100%;
+                max-width: 300px;
+            }
+            .info-list li {
+                text-align: left; 
+            }
         }
-        .footer-col h3 { color: white; font-size: 16px; margin-bottom: 20px; 
-    }
-        .footer-col a { display: block; color: #666; text-decoration: none; margin-bottom: 10px; font-size: 14px; 
-        }
-    
-    
+
+
+
+
+
+
+       /* SEATING AREA */
+.booking-section {
+    background: #15151a; 
+    padding: 40px; 
+    border-radius: 15px; 
+    margin-top: 50px; 
+    text-align: center;
+}
+
+.screen {
+    width: 70%; 
+    height: 4px; 
+    background: #555; 
+    margin: 0 auto 50px;
+    box-shadow: 0 10px 20px rgba(255,255,255,0.1); 
+    border-radius: 50%;
+}
+
+.seats-grid {
+    display: grid; 
+    grid-template-columns: repeat(8, 1fr); 
+    gap: 12px; 
+    max-width: 450px; 
+    margin: auto;
+}
+
+/* seats baze - Te gjitha Gri */
+.seat { 
+    aspect-ratio: 1; 
+    background: #444; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    transition: 0.3s ease;
+}
+
+.seat:hover { background: #666; }
+
+
+.seat.taken { background: #222 !important; cursor: not-allowed; opacity: 0.4; }
+.seat.selected { background: var(--primary) !important; }
+
+
+
+
+
+/* RREGULLIMI I LEGEND */
+.seat-legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; 
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    font-size: 14px;
+    color: #aaa;
+}
+
+.seat-demo {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    background: #444; /* Ngjyra Available */
+}
+
+.taken-demo { background: #222; opacity: 0.4; } /* Ngjyra Occupied */
+.selected-demo { background: var(--primary); } /* Ngjyra Selected */
+
+
+
+
+
+
+        /*CSS PER FOOTER */
+        .main-footer {
+    background-color: #0c0c0c; 
+    color: #ffffff;
+    padding: 60px 0 20px 0;
+    font-family: Arial, sans-serif;
+    border-top: 2px solid #e50914; 
+    margin-top: 80px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 30px;
+    padding: 0 15px;
+}
+
+.footer-logo {
+    color: #e50914;
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.footer-col h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.footer-col p {
+    color: #bbb;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col a {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.footer-col a:hover {
+    color: #e50914; 
+    padding-left: 5px;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #222;
+    margin-top: 40px;
+    padding-top: 20px;
+}
+
+.footer-bottom p {
+    color: #777;
+    font-size: 13px;
+}

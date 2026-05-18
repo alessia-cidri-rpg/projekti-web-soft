@@ -116,7 +116,7 @@ function loadMovies() {
             activeContainer.innerHTML = "";
             comingContainer.innerHTML = "";
 
-            // Gjenerojmë filmat AKTIVË (Status 1)
+            // Gjenerojme filmat AKTIVE (Status 1)
             data.active.forEach(movie => {
                 activeContainer.innerHTML += `
                     <div class="movie-card">
@@ -128,7 +128,7 @@ function loadMovies() {
                     </div>`;
             });
 
-            // Gjenerojmë filmat COMING SOON (Status 2)
+            // Gjenerojme filmat COMING SOON (Status 2)
             data.coming.forEach(movie => {
                 comingContainer.innerHTML += `
                     <div class="movie-card">
