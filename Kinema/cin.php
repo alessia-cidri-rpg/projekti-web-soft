@@ -231,13 +231,13 @@
 
 <footer class="main-footer">
     <div class="footer-container">
-      
+       
         <div class="footer-col">
             <h3 class="footer-logo">VELORA CINEMA</h3>
             <p>Bringing the best cinematic experience to your neighborhood with state-of-the-art technology.</p>
         </div>
 
-        
+       
         <div class="footer-col">
             <h3>Promotions</h3>
             <ul>
@@ -247,7 +247,6 @@
             </ul>
         </div>
 
-        
         <div class="footer-col">
             <h3>Upcoming Events</h3>
             <ul>
