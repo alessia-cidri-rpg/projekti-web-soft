@@ -257,8 +257,10 @@ function loadHeroCarousel() {
                     <img src="${movie.posteri}" alt="${movie.titulli}">
                     <div class="hero-info">
                         <h1>${movie.titulli}</h1>
-                        <a href="#details-${movieKey}" class="btn-reserve" style="text-decoration:none;">
-                            <i class="fa fa-ticket"></i> BOOK TICKET
+                        <a href="#details-${movie.filmi_id}" class="btn-reserve" style="text-decoration:none;">
+                        <i class="fa fa-ticket"></i> BOOK TICKET
+                    </a>
+
                         </a>
                     </div>
                 `;
