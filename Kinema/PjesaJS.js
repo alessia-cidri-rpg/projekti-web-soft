@@ -105,18 +105,6 @@ window.onclick = function(event) {
     if (event.target.classList.contains('modal-overlay')) closeAuth();
 }
 
-//pjs js te details 
-function loadMovies() {
-    fetch("getMoviesfromDatabase.php")
-        .then(res => res.json())
-        .then(data => {
-            const activeContainer = document.getElementById("activeMovies");
-            const comingContainer = document.getElementById("comingMovies");
-
-            // Pastrojmë kontenierët
-            activeContainer.innerHTML = "";
-            comingContainer.innerHTML = "";
-
 /*  Per momentin koment kjo pjes e details.php
             // Gjenerojme filmat AKTIVE (Status 1)
 
@@ -259,13 +247,17 @@ function loadHeroCarousel() {
             slidesContainer.innerHTML = "";
 
             movies.forEach((movie, index) => {
+                // krijojmë movieKey njësoj si te loadMovies()
+                let movieKey = movie.titulli.toLowerCase().split(' ')[0].replace(':', '');
+                if (movieKey === 'the') movieKey = movie.titulli.toLowerCase().split(' ')[1];
+
                 const slide = document.createElement("div");
                 slide.className = "slide" + (index === 0 ? " active" : "");
                 slide.innerHTML = `
                     <img src="${movie.posteri}" alt="${movie.titulli}">
                     <div class="hero-info">
                         <h1>${movie.titulli}</h1>
-                        <a href="#details-${movie.filmi_id}" class="btn-reserve" style="text-decoration:none;">
+                        <a href="#details-${movieKey}" class="btn-reserve" style="text-decoration:none;">
                             <i class="fa fa-ticket"></i> BOOK TICKET
                         </a>
                     </div>
