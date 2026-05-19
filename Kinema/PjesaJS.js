@@ -1,16 +1,16 @@
-const movieData = {
-    'dune': { title: 'Dune: Part Two', dur: '2h 46min', genre: 'Sci-Fi, Action', rel: '1 March 2024', dir: 'Denis Villeneuve', cast: 'Timothée Chalamet, Zendaya', img: 'https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg', desc: 'Follow the mythic journey of Paul Atreides as he unites with Chani and the Fremen.' },
-    'avatar': { title: 'Avatar: The Way of Water', dur: '3h 12min', genre: 'Sci-Fi, Adventure', rel: '16 December 2022', dir: 'James Cameron', cast: 'Sam Worthington, Zoe Saldana', img: 'https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg', desc: 'Jake Sully lives with his newfound family formed on the extrasolar moon Pandora.' },
-    'mario': { title: 'The Super Mario Bros.', dur: '1h 32min', genre: 'Animation, Adventure', rel: '5 April 2023', dir: 'Aaron Horvath', cast: 'Chris Pratt, Anya Taylor-Joy', img: 'https://image.tmdb.org/t/p/w500/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg', desc: 'A plumber named Mario travels through an underground labyrinth with his brother.' },
-    'oppenheimer': { title: 'Oppenheimer', dur: '3h 0min', genre: 'Biography, Drama', rel: '21 July 2023', dir: 'Christopher Nolan', cast: 'Cillian Murphy, Emily Blunt', img: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg', desc: 'The story of American scientist J. Robert Oppenheimer and his role in the atomic bomb.' },
-    'joker': { title: 'Joker', dur: '2h 2min', genre: 'Crime, Drama', rel: '4 October 2019', dir: 'Todd Phillips', cast: 'Joaquin Phoenix', img: 'Photos/Joker.jpg', desc: 'In Gotham City, mentally troubled comedian Arthur Fleck is disregarded by society.' },
-    'batman': { title: 'The Dark Knight', dur: '2h 56min', genre: 'Action, Crime', rel: '4 March 2022', dir: 'Christopher Nolan', cast: 'Christian Bale, Heath Ledger', img: 'Photos/the-dark-knight-movie.jpg', desc: 'When a sadistic serial killer begins murdering key political figures in Gotham.' },
-    'devil': { title: 'The Devil Wears Prada 2', dur: '1h 50min', genre: 'Comedy, Drama', rel: '2026', dir: 'David Frankel', cast: 'Meryl Streep, Anne Hathaway', img: 'Photos/TheDevilWearsPradA2.jpeg', date: 'Vjen më: 15 Maj 2026' },
-    'garfield': { title: 'The Garfield Movie', dur: '1h 41min', genre: 'Animation, Comedy', rel: '2024', dir: 'Mark Dindal', cast: 'Chris Pratt, Samuel L. Jackson', img: 'https://image.tmdb.org/t/p/w500/p6AbOJvMQhBmffd0PIv0u8ghWeY.jpg', date: 'Vjen më: 24 Maj 2026' },
-    'central': { title: 'Central Intelligence', dur: '1h 47min', genre: 'Action, Comedy', rel: '2016', dir: 'Rawson Marshall Thurber', cast: 'Dwayne Johnson, Kevin Hart', img: 'Photos/Central_Intelligence.jpg', date: 'Vjen më: 10 Qershor 2026' },
-    'nohard': { title: 'No Hard Feelings', dur: '1h 43min', genre: 'Comedy', rel: '2023', dir: 'Gene Stupnitsky', cast: 'Jennifer Lawrence', img: 'Photos/no-hard-feelings-movie-poster.jpg', date: 'Vjen më: 18 Qershor 2026' },
-    'barbie': { title: 'Barbie', dur: '1h 54min', genre: 'Comedy, Adventure', rel: '2023', dir: 'Greta Gerwig', cast: 'Margot Robbie, Ryan Gosling', img: 'Photos/barbie.jpg', date: 'Vjen më: 2 Korrik 2026' },
-    'gladiator': { title: 'Gladiator II', dur: '2h 30min', genre: 'Action, Drama', rel: '2024', dir: 'Ridley Scott', cast: 'Paul Mescal, Pedro Pascal', img: 'Photos/gladiator-2.jpg', date: 'Vjen më: 22 Korrik 2026' }
+ const movieData = {
+    'dune': { title: 'Dune: Part Two', dur: '2h 46min', genre: 'Sci-Fi, Action', rel: '1 March 2024', dir: 'Denis Villeneuve', cast: 'Timothée Chalamet, Zendaya', img: 'https://xl.movieposterdb.com/24_02/2024/15239678/xl_dune-part-two-movie-poster_18c5c05f.jpg', desc: 'Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the universe, he must prevent a terrible future only he can foresee.' },
+    'avatar': { title: 'Avatar: The Way of Water', dur: '3h 12min', genre: 'Sci-Fi, Adventure', rel: '16 December 2022', dir: 'James Cameron', cast: 'Sam Worthington, Zoe Saldana', img: 'https://xl.movieposterdb.com/23_01/2022/1630029/xl_avatar-the-way-of-water-movie-poster_c111a145.png', desc: 'Jake Sully and Neytiri have formed a family and are doing everything to stay together. However, they must leave their home and explore the regions of Pandora. When an ancient threat resurfaces, Jake must fight a difficult war against the humans.' },
+    'mario': { title: 'The Super Mario Bros.', dur: '1h 32min', genre: 'Animation, Adventure', rel: '5 April 2023', dir: 'Aaron Horvath', cast: 'Chris Pratt, Anya Taylor-Joy', img: 'https://xl.movieposterdb.com/23_04/2023/6718170/xl_the-super-mario-bros-movie-movie-poster_c62032f8.jpg', desc: 'While working underground to fix a water main, Brooklyn plumbers and brothers Mario and Luigi are transported through a mysterious pipe to a magical new world. But when the siblings are separated, an epic adventure begins.' },
+    'oppenheimer': { title: 'Oppenheimer', dur: '3h 0min', genre: 'Biography, Drama', rel: '21 July 2023', dir: 'Christopher Nolan', cast: 'Cillian Murphy, Emily Blunt', img: 'https://xl.movieposterdb.com/23_06/2023/15398776/xl_oppenheimer-movie-poster_a83f1cbb.jpg', desc: 'During World War II, Lt. Gen. Leslie Groves Jr. appoints physicist J. Robert Oppenheimer to work on the top-secret Manhattan Project. Oppenheimer and a team of scientists spend years developing and designing the atomic bomb. Their work comes to fruition on July 16, 1945, as they witness the world\'s first nuclear explosion, forever changing the course of history.' },
+    'joker': { title: 'Joker', dur: '2h 2min', genre: 'Crime, Drama', rel: '4 October 2019', dir: 'Todd Phillips', cast: 'Joaquin Phoenix', img: 'https://xl.movieposterdb.com/21_04/2019/7286456/xl_7286456_f83eac6d.jpg', desc: 'Arthur Fleck, a party clown, leads an impoverished life with his ailing mother. However, when society shuns him and brands him as a freak, he decides to embrace the life of crime and chaos.' },
+    'batman': { title: 'The Dark Knight', dur: '2h 56min', genre: 'Action, Crime', rel: '4 March 2022', dir: 'Christopher Nolan', cast: 'Christian Bale, Heath Ledger', img: 'https://xl.movieposterdb.com/24_06/2008/468569/xl_the-dark-knight-movie-poster_96214dbd.jpg', desc: 'When a menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman, James Gordon and Harvey Dent must work together to put an end to the madness.' },
+    'devil': { title: 'The Devil Wears Prada 2', dur: '1h 50min', genre: 'Comedy, Drama', rel: '2026', dir: 'David Frankel', cast: 'Meryl Streep, Anne Hathaway', img: 'https://xl.movieposterdb.com/26_04/2026/33612209/xl_the-devil-wears-prada-2-movie-poster_6b73993b.jpg', desc: 'Miranda Priestly struggles against Emily Charlton, her former assistant turned rival executive, as they compete for advertising revenue amid declining print media, while Miranda nears retirement.', date: 'Available on: May 15, 2026' },
+    'garfield': { title: 'The Garfield Movie', dur: '1h 41min', genre: 'Animation, Comedy', rel: '2024', dir: 'Mark Dindal', cast: 'Chris Pratt, Samuel L. Jackson', img: 'https://xl.movieposterdb.com/24_03/2024/5779228/xl_the-garfield-movie-movie-poster_3ccdd455.jpg', desc:'After an unexpected reunion with his long-lost father, a scruffy street cat, Garfield is forced to leave his perfectly pampered life in order to take part in a high-stakes heist. And an incredible outdoor adventure begins!', date: 'Available on: May 24, 2026' },
+    'central': { title: 'Central Intelligence', dur: '1h 47min', genre: 'Action, Comedy', rel: '2016', dir: 'Rawson Marshall Thurber', cast: 'Dwayne Johnson, Kevin Hart', img: 'https://xl.movieposterdb.com/15_11/2016/1489889/xl_1489889_d65e6f4f.jpg', desc:'Accountant Calvin, who was the most popular boy at school, meets his ex-classmate, Bob, at a reunion. Little does he know that the meeting would wreak havoc in his quiet and peaceful life.', date: 'Available on: June 10, 2026' },
+    'nohard': { title: 'No Hard Feelings', dur: '1h 43min', genre: 'Comedy', rel: '2023', dir: 'Gene Stupnitsky', cast: 'Jennifer Lawrence', img: 'https://xl.movieposterdb.com/23_06/2023/15671028/xl_no-hard-feelings-movie-poster_0bca72a9.jpg', desc:'On the brink of losing her childhood home, a desperate woman agrees to date a wealthy couple\'s introverted and awkward 19-year-old son. However, he proves to be more of a challenge than she expected, and time is running out before she loses it all.', date: 'Available on: June 18, 2026' },
+    'barbie': { title: 'Barbie', dur: '1h 54min', genre: 'Comedy, Adventure', rel: '2023', dir: 'Greta Gerwig', cast: 'Margot Robbie, Ryan Gosling', img: 'https://xl.movieposterdb.com/23_06/2023/1517268/xl_barbie-movie-poster_780f2c78.jpg', desc: 'Barbie and Ken are having the time of their lives in the colorful and seemingly perfect world of Barbie Land. However, when they get a chance to go to the real world, they soon discover the joys and perils of living among humans.', date: 'Available on: July 2, 2026' },
+    'gladiator': { title: 'Gladiator II', dur: '2h 30min', genre: 'Action, Drama', rel: '2024', dir: 'Ridley Scott', cast: 'Paul Mescal, Pedro Pascal', img: 'https://xl.movieposterdb.com/24_08/2024/9218128/xl_gladiator-2-movie-poster_c8f77715.jpg', desc: 'Years after witnessing the death of Maximus at the hands of his uncle, Lucius must enter the Colosseum after the powerful emperors of Rome conquer his home. With rage in his heart and the future of the empire at stake, he looks to the past to find the strength and honor needed to return the glory of Rome to its people.',  date: 'Available on: July 22, 2026' }
 };
 
 // MASTER NAVIGATION - Kjo funksionon me hash (#)
@@ -105,6 +105,7 @@ window.onclick = function(event) {
     if (event.target.classList.contains('modal-overlay')) closeAuth();
 }
 
+//pjs js te details 
 function loadMovies() {
     fetch("getMoviesfromDatabase.php")
         .then(res => res.json())
@@ -116,7 +117,7 @@ function loadMovies() {
             activeContainer.innerHTML = "";
             comingContainer.innerHTML = "";
 
-            // Gjenerojmë filmat AKTIVË (Status 1)
+            
             data.active.forEach(movie => {
                 activeContainer.innerHTML += `
                     <div class="movie-card">
@@ -128,7 +129,7 @@ function loadMovies() {
                     </div>`;
             });
 
-            // Gjenerojmë filmat COMING SOON (Status 2)
+            
             data.coming.forEach(movie => {
                 comingContainer.innerHTML += `
                     <div class="movie-card">
@@ -142,6 +143,10 @@ function loadMovies() {
         })
         .catch(err => console.error("Error ngarkimi:", err));
 }
+
+
+
+
 
 // Thirr funksionin kur faqja të jetë gati
 document.addEventListener("DOMContentLoaded", loadMovies);
