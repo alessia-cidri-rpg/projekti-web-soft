@@ -414,7 +414,12 @@
 .seat.taken { background: #222 !important; cursor: not-allowed; opacity: 0.4; }
 .seat.selected { background: var(--primary) !important; }
 
-
+/* Kjo ben qe vendet e rezervuara te qendrojne te kuqe dhe te mos klikohen me */
+.seat.taken {
+    background-color: #ff4d4d !important; /* Ngjyra e kuqe */
+    cursor: not-allowed;
+    opacity: 0.8;
+}
 
 
 
@@ -441,20 +446,19 @@
     width: 18px;
     height: 18px;
     border-radius: 3px;
-<<<<<<< HEAD
+
     background: #444; 
 }
 
 .taken-demo { background: #222; opacity: 0.4; } 
 .selected-demo { background: var(--primary); } 
-=======
-    background: #444; /* Ngjyra Available */
-}
+
+   /*.background: #444; /* Ngjyra Available */
+/*}*/
 
 .taken-demo { background: #222; opacity: 0.4; } /* Ngjyra Occupied */
 .selected-demo { background: var(--primary); } /* Ngjyra Selected */
 
->>>>>>> bfb05c31904ad449659d25a4414826bce97f1d18
 
 
 

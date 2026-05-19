@@ -208,7 +208,43 @@
     <button class="btn-reserve" style="margin: 30px auto;">Confirm Booking</button>
 </div>
     </section>
+
+
+
+
+
+
+
+            <!--Pjes e re e shtuar per rezervimet qe do rreg-->
+
+<div id="success-message" style="display:none; text-align:center; padding: 100px 20px; color: white;">
+    <h1 style="color: #ff4d4d; font-size: 4rem; margin-bottom: 20px;">✅</h1>
+    <h2 style="font-size: 2rem;">Rezervimi u krye me sukses!</h2>
+    <p style="font-size: 1.2rem; margin-top: 15px; color: #aaa;">
+        Vendet e rezervuara: <span id="booked-seats-list" style="color: #ff4d4d; font-weight: bold; font-size: 1.5rem;"></span>
+    </p>
+    <button onclick="window.location.reload()" style="margin-top:40px; padding:12px 25px; cursor:pointer; background:#ff4d4d; border:none; color:white; border-radius:5px; font-weight:bold;">
+        Kthehu te Filmat
+    </button>
+</div>
+
+
+
+
+
+
+
+
+            <!--main duhet -->
+
 </main>
+
+
+
+
+
+
+
 
 <footer class="main-footer">
     <div class="footer-container">
