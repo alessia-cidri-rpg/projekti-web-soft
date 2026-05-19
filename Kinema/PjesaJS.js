@@ -117,7 +117,9 @@ function loadMovies() {
             activeContainer.innerHTML = "";
             comingContainer.innerHTML = "";
 
-            
+/*  Per momentin koment kjo pjes e details.php
+            // Gjenerojme filmat AKTIVE (Status 1)
+
             data.active.forEach(movie => {
                 activeContainer.innerHTML += `
                     <div class="movie-card">
@@ -129,7 +131,8 @@ function loadMovies() {
                     </div>`;
             });
 
-            
+            // Gjenerojme filmat COMING SOON (Status 2)
+
             data.coming.forEach(movie => {
                 comingContainer.innerHTML += `
                     <div class="movie-card">
@@ -143,6 +146,58 @@ function loadMovies() {
         })
         .catch(err => console.error("Error ngarkimi:", err));
 }
+
+*/
+
+
+//Pjs js e re per details 
+
+function loadMovies() {
+    fetch("getMoviesfromDatabase.php")
+        .then(res => res.json())
+        .then(data => {
+            const activeContainer = document.getElementById("activeMovies");
+            const comingContainer = document.getElementById("comingMovies");
+
+            activeContainer.innerHTML = "";
+            comingContainer.innerHTML = "";
+
+            data.active.forEach(movie => {
+                // Krijojmë një çelës (psh "Dune: Part Two" bëhet "dune")
+                let movieKey = movie.titulli.toLowerCase().split(' ')[0].replace(':', '');
+                if (movieKey === 'the') movieKey = movie.titulli.toLowerCase().split(' ')[1];
+
+                activeContainer.innerHTML += `
+                    <div class="movie-card">
+                        <img src="${movie.posteri}" alt="${movie.titulli}">
+                        <div class="overlay">
+                            <a href="#details-${movieKey}" class="btn-more">BOOK TICKET</a>
+                        </div>
+                        <h3 style="text-align:center; padding:10px; font-size:16px;">${movie.titulli}</h3>
+                    </div>`;
+            });
+
+            data.coming.forEach(movie => {
+                let movieKey = movie.titulli.toLowerCase().split(' ')[0].replace(':', '');
+                if (movieKey === 'the') movieKey = movie.titulli.toLowerCase().split(' ')[1];
+
+                comingContainer.innerHTML += `
+                    <div class="movie-card">
+                        <img src="${movie.posteri}" alt="${movie.titulli}">
+                        <div class="overlay">
+                            <a href="#coming-${movieKey}" class="btn-more">DETAILS</a>
+                        </div>
+                        <h3 style="text-align:center; padding:10px; font-size:16px;">${movie.titulli}</h3>
+                    </div>`;
+            });
+        })
+        .catch(err => console.error("Error ngarkimi:", err));
+}
+
+
+
+//Ktu mbaron pjs e re e details
+
 
 
 
@@ -192,3 +247,31 @@ formData.append("shfaqja_id", shfaqjaID);
         }
     });
 });
+document.addEventListener("DOMContentLoaded", () => {
+    loadHeroCarousel();
+});
+
+function loadHeroCarousel() {
+    fetch("getActiveMovies.php")
+        .then(res => res.json())
+        .then(movies => {
+            const slidesContainer = document.getElementById("carousel-slides");
+            slidesContainer.innerHTML = "";
+
+            movies.forEach((movie, index) => {
+                const slide = document.createElement("div");
+                slide.className = "slide" + (index === 0 ? " active" : "");
+                slide.innerHTML = `
+                    <img src="${movie.posteri}" alt="${movie.titulli}">
+                    <div class="hero-info">
+                        <h1>${movie.titulli}</h1>
+                        <a href="#details-${movie.filmi_id}" class="btn-reserve" style="text-decoration:none;">
+                            <i class="fa fa-ticket"></i> BOOK TICKET
+                        </a>
+                    </div>
+                `;
+                slidesContainer.appendChild(slide);
+            });
+        })
+        .catch(err => console.error("Error loading carousel:", err));
+}

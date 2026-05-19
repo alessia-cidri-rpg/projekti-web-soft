@@ -32,7 +32,6 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             <a href="#" class="active" onclick="showSection('movies')"><i class="fa fa-film"></i> Movies</a>
             <a href="#" onclick="showSection('halls')"><i class="fa fa-couch"></i> Halls & Seats</a>
             <a href="#" onclick="showSection('schedule')"><i class="fa fa-calendar-alt"></i> Schedule</a>
-            <a href="#" onclick="showSection('crm')"><i class="fa fa-users"></i> Customers</a>
             
             <a href="cin.php" style="margin-top: auto; color: var(--primary); border-top: 1px solid #222; padding-top: 20px;">
                 <i class="fa fa-home"></i> Back to Site
@@ -48,9 +47,9 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
                 <button class="btn-add" onclick="toggleModal(true)">+ Add New Movie</button>
             </div>
             <div class="stats-grid">
-                <div class="stat-card"><h3>Total Films</h3><p>28</p></div>
-                <div class="stat-card"><h3>Now Showing</h3><p>12</p></div>
-                <div class="stat-card"><h3>Coming Soon</h3><p>6</p></div>
+                <div class="stat-card"><h3>Total Films</h3><p>13</p></div>
+                <div class="stat-card"><h3>Now Showing</h3><p>6</p></div>
+                <div class="stat-card"><h3>Coming Soon</h3><p>7</p></div>
             </div>
             <div class="admin-table-container">
                 <table class="admin-table">
@@ -71,28 +70,36 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         <div id="halls-sec" style="display:none">
             <h2 class="section-title">Halls & Seats Management</h2>
             <div class="stats-grid">
-                <div class="stat-card"><h3>Hall 1 (IMAX)</h3><p>32 Seats</p><button class="btn-Kodi" style="margin-top:15px">Manage Layout</button></div>
-                </div>
-        </div>
-        <div id="schedule-sec" style="display:none;">
-            <h2 class="section-title">Showtime Schedule</h2>
-            <div class="admin-table-container">
-                <table class="admin-table">
-                    <thead><tr><th>Movie Title</th><th>Hall</th><th>Time</th><th>Status</th><th>Action</th></tr></thead>
-                    <tbody><tr><td>Dune: Part Two</td><td>Hall 1</td><td>19:30</td><td>Confirmed</td><td><button class="btn-Kodi">Change</button></td></tr></tbody>
-                </table>
-            </div>
-            <button class="btn-add" style="margin-top:25px">+ Add New Showtime</button>
-        </div>
-        <div id="crm-sec" style="display:none;">
-            <h2 class="section-title">Customer Database (CRM)</h2>
-            <div class="admin-table-container">
-                <table class="admin-table">
-                    <thead><tr><th>User ID</th><th>Full Name</th><th>Email Address</th><th>Status</th></tr></thead>
-                    <tbody><tr><td>#USR-992</td><td>No name</td><td>noName@email.com</td><td style="color:#28a745">Active</td></tr></tbody>
-                </table>
+                <div class="stat-card"><h3>Hall 1 (IMAX)</h3><p>32 Seats</p></div>
             </div>
         </div>
+
+
+<div id="schedule-sec" style="display:none;">
+    <h2 class="section-title">Showtime Schedule</h2>
+    <button class="btn-add" onclick="toggleScheduleModal(true)" style="margin-top:25px">+ Add New Showtime</button>
+    
+    <div class="admin-table-container">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Movie Title</th>
+                    <th>Hall</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="showtimesTableBody">
+                </tbody>
+        </table>
+    </div>
+</div>
+
+        
+
+
+        <div id="crm-sec"> </div>
     </main>
 
     <!-- MODAL PER SHTIMIN / EDITIMIN E FILMAVE -->
@@ -194,10 +201,62 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     </div>
 </form>
         ...
+
+
+
+
+<!-- MODAL I RI PER SCHEDULE (ADD / CHANGE) -->
+
+<div id="scheduleModal" class="modal-overlay">
+    <div class="modal-content">
+        
+        <form action="addShowtime.php" method="POST">
+            
+            <div class="input-group">
+                <label>Select Movie</label>
+                <select name="filmi_id" required>
+                    <option value="">-- Choose Movie --</option>
+                    <?php
+                    $movies_query = mysqli_query($conn, "SELECT filmi_id, titulli FROM filmi ORDER BY titulli ASC");
+                    while($movie = mysqli_fetch_assoc($movies_query)) {
+                        echo "<option value='".$movie['filmi_id']."'>".$movie['titulli']."</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Select Hall</label>
+                <select name="salla_id" required>
+                    <option value="">-- Choose Hall --</option>
+                    <?php
+                    $halls_query = mysqli_query($conn, "SELECT salla_id, emri FROM salla ORDER BY emri ASC");
+                    while($hall = mysqli_fetch_assoc($halls_query)) {
+                        echo "<option value='".$hall['salla_id']."'>".$hall['emri']."</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Showtime Date & Time</label>
+                <input type="datetime-local" name="data_ora" required>
+            </div>
+
+        <div style="display:flex; gap:10px; margin-top:20px;">
+            <button type="submit" class="btn-add" style="flex:1; justify-content:center;">Confirm</button>
+            <button type="reset" onclick="window.location.href='admin.php'" style="flex:1; background:#333; color:white; border:none; border-radius:5px; cursor:pointer;">Cancel</button>
+        </div>
+    </form>
+</div>
+
+
+
     <script src="Admin.js"></script>
     <script> // Ngarko filmat sapo faqja hapet
     document.addEventListener("DOMContentLoaded", () => {
         loadMovies();
+        loadShowtimes();
     });
 
     function loadMovies() {
@@ -208,6 +267,24 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             })
             .catch(error => console.error("Error loading movies:", error));
     }
+
+    function loadShowtimes() {
+    fetch("listShowtimes.php")
+        .then(response => response.text())
+        .then(html => {
+            // per showtime
+            document.getElementById("showtimesTableBody").innerHTML = html;
+        })
+        .catch(error => console.error("Error loading showtimes:", error));
+    }
+
+    function toggleScheduleModal(show) {
+    const modal = document.getElementById("scheduleModal");
+    if (modal) {
+        modal.style.display = show ? 'flex' : 'none';
+    }
+    }
     </script>
+
 </body>
 </html>

@@ -13,6 +13,14 @@ function showSection(id) {
         event.currentTarget.classList.add('active');
     }
 }
+// Per add showtime
+function toggleScheduleModal(show) {
+    const modal = document.getElementById("scheduleModal");
+    if (modal) {
+        modal.style.display = show ? 'flex' : 'none';
+    }
+}
+
 
 // Hapja/Mbyllja e Modalit (per Add New)
 function toggleModal(show) {
@@ -25,6 +33,18 @@ function toggleModal(show) {
         clearForm();
     }
 }
+
+
+
+
+// Shto këtë te window.onclick-u yt ekzistues që modali të mbyllet nëse klikohet jashtë tij (në hapësirën e zezë)
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById("scheduleModal");
+    if (event.target === modal) {
+        toggleScheduleModal(false);
+    }
+});
+
 
 // Hapja e Modalit per Editim
 // Kemi shtuar parametrin 'director' ne fund

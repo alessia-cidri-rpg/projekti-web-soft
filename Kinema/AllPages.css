@@ -441,11 +441,20 @@
     width: 18px;
     height: 18px;
     border-radius: 3px;
+<<<<<<< HEAD
     background: #444; 
 }
 
 .taken-demo { background: #222; opacity: 0.4; } 
 .selected-demo { background: var(--primary); } 
+=======
+    background: #444; /* Ngjyra Available */
+}
+
+.taken-demo { background: #222; opacity: 0.4; } /* Ngjyra Occupied */
+.selected-demo { background: var(--primary); } /* Ngjyra Selected */
+
+>>>>>>> bfb05c31904ad449659d25a4414826bce97f1d18
 
 
 
