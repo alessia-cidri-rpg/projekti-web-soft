@@ -102,31 +102,12 @@
     <!-- HOME PAGE CONTENT -->
     <section id="home-section">
         <div class="hero-carousel">
-            <div class="arrow arrow-left" onclick="changeSlide(-1)">&#10094;</div>
-            <div class="arrow arrow-right" onclick="changeSlide(1)">&#10095;</div>
+        <div class="arrow arrow-left" onclick="changeSlide(-1)">&#10094;</div>
+        <div class="arrow arrow-right" onclick="changeSlide(1)">&#10095;</div>
 
-            <div class="slide active">
-                <img src="https://image.tmdb.org/t/p/original/9n2tJBplPbgR2ca05hS5CKXwP2c.jpg">
-                <div class="hero-info">
-                    <h1>The Super Mario</h1>
-                    <a href="#details-mario" class="btn-reserve" style="text-decoration:none;"><i class="fa fa-ticket"></i> BOOK TICKET</a>
-                </div>
-            </div>
-            <div class="slide">
-                <img src="https://image.tmdb.org/t/p/original/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg">
-                <div class="hero-info">
-                    <h1>Dune: Part Two</h1>
-                    <a href="#details-dune" class="btn-reserve" style="text-decoration:none;"><i class="fa fa-ticket"></i> BOOK TICKET</a>
-                </div>
-            </div>
-            <div class="slide">
-                <img src="https://image.tmdb.org/t/p/original/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg">
-                <div class="hero-info">
-                    <h1>Oppenheimer</h1>
-                    <a href="#details-oppenheimer" class="btn-reserve" style="text-decoration:none;"><i class="fa fa-ticket"></i> BOOK TICKET</a>
-                </div>
-            </div>
-        </div>
+        <!-- Slidet do të mbushen nga JS -->
+        <div id="carousel-slides"></div>
+    </div>
 
         <!-- SEKSIONI: NOW IN CINEMA -->
         <h2 class="section-title">Now in Cinema</h2>

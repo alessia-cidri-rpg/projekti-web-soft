@@ -187,3 +187,31 @@ formData.append("shfaqja_id", shfaqjaID);
         }
     });
 });
+document.addEventListener("DOMContentLoaded", () => {
+    loadHeroCarousel();
+});
+
+function loadHeroCarousel() {
+    fetch("getActiveMovies.php")
+        .then(res => res.json())
+        .then(movies => {
+            const slidesContainer = document.getElementById("carousel-slides");
+            slidesContainer.innerHTML = "";
+
+            movies.forEach((movie, index) => {
+                const slide = document.createElement("div");
+                slide.className = "slide" + (index === 0 ? " active" : "");
+                slide.innerHTML = `
+                    <img src="${movie.posteri}" alt="${movie.titulli}">
+                    <div class="hero-info">
+                        <h1>${movie.titulli}</h1>
+                        <a href="#details-${movie.filmi_id}" class="btn-reserve" style="text-decoration:none;">
+                            <i class="fa fa-ticket"></i> BOOK TICKET
+                        </a>
+                    </div>
+                `;
+                slidesContainer.appendChild(slide);
+            });
+        })
+        .catch(err => console.error("Error loading carousel:", err));
+}
