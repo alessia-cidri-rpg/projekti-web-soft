@@ -165,7 +165,8 @@
                 <div id="coming-soon-tag" style="display:none; background: var(--primary); padding: 10px; border-radius: 5px; font-weight: bold; margin-top: 20px; text-align: center;"></div>
             </div>
         </div>
-<div id="booking-area" class="booking-section" data-shfaqja-id="1">
+
+ <div id="booking-area" class="booking-section" data-shfaqja-id="1">
     <h2>Choose Your Seats</h2>
     <div class="screen"></div>
     <div class="seats-grid">
@@ -177,7 +178,6 @@
         <div class="seat" data-id="6"></div>
         <div class="seat" data-id="7"></div>
         <div class="seat" data-id="8"></div>
-
         <div class="seat" data-id="9"></div>
         <div class="seat" data-id="10"></div>
         <div class="seat" data-id="11"></div>
@@ -186,7 +186,6 @@
         <div class="seat" data-id="14"></div>
         <div class="seat" data-id="15"></div>
         <div class="seat" data-id="16"></div>
-
         <div class="seat" data-id="17"></div>
         <div class="seat" data-id="18"></div>
         <div class="seat" data-id="19"></div>
@@ -195,7 +194,6 @@
         <div class="seat" data-id="22"></div>
         <div class="seat" data-id="23"></div>
         <div class="seat" data-id="24"></div>
-
         <div class="seat" data-id="25"></div>
         <div class="seat" data-id="26"></div>
         <div class="seat" data-id="27"></div>
@@ -210,32 +208,19 @@
     </section>
 
 
-
-
-
-
-
             <!--Pjes e re e shtuar per rezervimet qe do rreg-->
 
 <div id="success-message" style="display:none; text-align:center; padding: 100px 20px; color: white;">
     <h1 style="color: #ff4d4d; font-size: 4rem; margin-bottom: 20px;">✅</h1>
-    <h2 style="font-size: 2rem;">Rezervimi u krye me sukses!</h2>
+    <h2 style="font-size: 2rem;">Thank you! Your reservation has been saved!</h2>
     <p style="font-size: 1.2rem; margin-top: 15px; color: #aaa;">
-        Vendet e rezervuara: <span id="booked-seats-list" style="color: #ff4d4d; font-weight: bold; font-size: 1.5rem;"></span>
+      Your seats: <span id="booked-seats-list" style="color: #ff4d4d; font-weight: bold; font-size: 1.5rem;"></span>
     </p>
     <button onclick="window.location.reload()" style="margin-top:40px; padding:12px 25px; cursor:pointer; background:#ff4d4d; border:none; color:white; border-radius:5px; font-weight:bold;">
-        Kthehu te Filmat
+        Home Page
     </button>
 </div>
 
-
-
-
-
-
-
-
-            <!--main duhet -->
 
 </main>
 
